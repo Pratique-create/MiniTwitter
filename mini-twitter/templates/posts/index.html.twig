@@ -3,32 +3,35 @@
 {% block title %}Posts index{% endblock %}
 
 {% block body %}
-    <h1>Posts index</h1>
+    <h1>Tweets</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Content</th>
-                <th>CreatedAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
         {% for post in posts %}
-            <tr>
-                <td>{{ post.id }}</td>
-                <td>{{ post.content }}</td>
-                <td>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
+            <div>
+                <div>
+                    <img>
+                    <p>{{ post.id }}</p>
+                </div>
+                <div>
+                <p>{{ post.content }}</p>
+                </div>
+                <div>
+                <p>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</p>
+                <div>
+                    <button> RT </button>
+                    <p> RT si t'es triste </p>
+                </div>
+                <div>
+                    <button> Like </button>
+                    <p> Like si tu veux avoir astra yao </p>
+                </div>
+                <div>
                     <a href="{{ path('app_posts_show', {'id': post.id}) }}">show</a>
                     <a href="{{ path('app_posts_edit', {'id': post.id}) }}">edit</a>
-                </td>
-            </tr>
+                </div>
+            </div>
+
         {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
+            <p> Pas de données trouver </p>
         {% endfor %}
         </tbody>
     </table>

@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 use App\Repository\UserRepository;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 #[Route('/posts')]
 final class PostsController extends AbstractController
@@ -26,8 +27,11 @@ final class PostsController extends AbstractController
     }
 
     #[Route('/new', name: 'app_posts_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, SessionInterface $session): Response
     {
+        if (!$session->has('user_id')) {
+            return $this->redirectToRoute('app_connexion');
+        }
         $post = new Posts();
         $form = $this->createForm(PostsType::class, $post);
         $form->handleRequest($request);

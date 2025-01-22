@@ -32,7 +32,7 @@ final class PostsController extends AbstractController
         if (!$session->has('user_id')) {
             return $this->redirectToRoute('app_connexion');
         }
-        $post = new Posts();
+        $post = new Posts($session);
         $form = $this->createForm(PostsType::class, $post);
         $form->handleRequest($request);
 

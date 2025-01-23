@@ -12,7 +12,7 @@
                     <p>{{ post.UserId.username }}</p>
                 </div>
                 <div>
-                <p>{{ post.content }}</p>
+                <p>{{ post.content|slice(0, 100) }}</p>
                 </div>
                 <div>
                 <p>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</p>

@@ -48,18 +48,7 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             
-            // ->add('number', PhoneNumberType::class, ['default_region' => 'FR', 'format' => PhoneNumberFormat::NATIONAL, 'required' => false])
-
-            // ->get('number')
-            //     ->addModelTransformer(new CallbackTransformer (
-            //         function ($number): ?string {
-                        
-            //         },
-            //         function ($number):  {
-                        
-            //         }
-            //     ))
-        ;
+            ->add('number', PhoneNumberType::class, ['default_region' => 'FR', 'format' => PhoneNumberFormat::NATIONAL, 'required' => false]) ;
     } 
 
     public function configureOptions(OptionsResolver $resolver): void

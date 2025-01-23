@@ -56,21 +56,20 @@
 <div class="">
 	<div class="">
 		<div class="">
-			<img src="{{ user.profile_picture }}" alt="Profile Picture">
+			<img src="{{ user.profilePicture }}" alt="Profile Picture">
 		</div>
 		<div class="">
 			<h1>{{ user.username }}</h1>
 			{# <p>{{ user.email }}</p> #}
-			{# <p>Followers: {{ user.followers|length }} | Following: {{ user.following|length }}</p> #}
 		</div>
 
 		<div class="">
 			<h2>Latest Tweets</h2>
-			{% for tweet in tweets %}
+			{% for post in posts %}
 				<div class="">
-					<p>{{ tweet.content }}</p>
+					<p>{{ post.content }}</p>
 					<span>Posted on
-						{{ tweet.createdAt|date('Y-m-d H:i') }}</span>
+						{{ post.createdAt|date('Y-m-d H:i') }}</span>
 				</div>
 			{% else %}
 				<p>No tweets to show.</p>
@@ -81,7 +80,7 @@
 </div>
 <div
 	class="">
-	{# <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a> #}
+	{<a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>}
 	<a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
 </div>
 {% endblock %}

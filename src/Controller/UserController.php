@@ -15,11 +15,20 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/user')]
 final class UserController extends AbstractController
 {
-    #[Route(name: 'app_user_index', methods: ['GET'])]
-    public function index(UserRepository $userRepository): Response
+    #[Route('/{id}', name: 'app_user_index', methods: ['GET'])]
+    public function index(int $id, UserRepository $userRepository, PostsRepository $postsRepository): Response
     {
+        $user = $userRepository->find($id);
+    
+        if (!$user) {
+            throw $this->createNotFoundException('User not found');
+        }
+
+        $posts = $postsRepository->findBy(['user' => $user], ['createdAt' => 'DESC']);
+
         return $this->render('user/index.html.twig', [
-            'users' => $userRepository->findAll(),
+            'user' =>$user,
+            'post' =>$posts,
         ]);
     }
 

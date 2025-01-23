@@ -1,45 +1,42 @@
 {# {% extends 'base.html.twig' %}
 
-{% block title %}User index{% endblock %}
+{% block title %}
+	{{user.username}}'s Profile
+{% endblock %}
 
 {% block body %}
-    <h1>User index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Number</th>
-                <th>Username</th>
-                <th>Password</th>
-                <th>ProfilePicture</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.number }}</td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.password }}</td>
-                <td>{{ user.profilePicture }}</td>
-                <td>
-                    <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<div class="">
+		<div class="">
+			<div class="">
+				<img src="{{ user.profilePicture }}" alt="Profile Picture">
+			</div>
+			<div class="">
+				<h1>{{ user.username }}</h1>
+				{# <p>{{ user.email }}</p> #}
+			</div>
 
-    <a href="{{ path('app_user_new') }}">Create new</a>
+			<div class="">
+				<h2>Latest Tweets</h2>
+
+				{% for post in posts %}
+					<div class="">
+						<p>{{ post.content }}</p>
+						<span>Posted on
+							{{ post.createdAt|date('Y-m-d H:i') }}</span>
+					</div>
+				{% else %}
+					<p>No tweets to show.</p>
+				{% endfor %}
+			</div>
+		</div>
+
+	</div>
+	<div
+		class="">
+		{# <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a> #}
+		<a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+	</div>
 {% endblock %}
  #}
 

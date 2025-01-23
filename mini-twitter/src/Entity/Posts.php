@@ -28,7 +28,7 @@ class Posts
 
     public function __construct(SessionInterface $session){
         $this->createdAt = new DateTimeImmutable();
-        $this->user_id = $session["user_id"];
+        $this->user_id = $session->get('user_id');
     }
 
     public function getId(): ?int

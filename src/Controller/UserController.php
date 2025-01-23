@@ -51,7 +51,7 @@ final class UserController extends AbstractController
     //     ]);
     // }
     #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
-    public function show(int $id, UserRepository $userRepository, PostsRepository $postsRepository): Response
+    public function show(int $id, UserRepository $userRepository): Response
     {
         $user = $userRepository->find($id);
     
@@ -59,11 +59,9 @@ final class UserController extends AbstractController
             throw $this->createNotFoundException('User not found');
         }
 
-        $tweets = $postsRepository->findBy(['user' => $user], ['createdAt' => 'DESC']);
-
         return $this->render('user/show.html.twig', [
             'user' => $user,
-            'tweets' => $tweets,
+            
         ]);
     }
 

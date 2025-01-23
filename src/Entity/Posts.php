@@ -45,9 +45,9 @@ class Posts
         return $this->user_id;
     }
 
-    public function setUserId(?User $user_id): static
+    public function setUserId(?User $user): static
     {
-        $this->user_id = $user_id;
+        $this->user_id = $user;
 
         return $this;
     }

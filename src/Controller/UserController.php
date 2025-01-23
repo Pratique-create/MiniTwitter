@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use App\Repository\PostsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,11 +43,27 @@ final class UserController extends AbstractController
         ]);
     }
 
+    // #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
+    // public function show(User $user): Response
+    // {
+    //     return $this->render('user/show.html.twig', [
+    //         'user' => $user,
+    //     ]);
+    // }
     #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
-    public function show(User $user): Response
+    public function show(int $id, UserRepository $userRepository, PostsRepository $postsRepository): Response
     {
+        $user = $userRepository->find($id);
+    
+        if (!$user) {
+            throw $this->createNotFoundException('User not found');
+        }
+
+        $tweets = $postsRepository->findBy(['user' => $user], ['createdAt' => 'DESC']);
+
         return $this->render('user/show.html.twig', [
             'user' => $user,
+            'tweets' => $tweets,
         ]);
     }
 

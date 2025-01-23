@@ -4,6 +4,13 @@
 {% endblock %}
 
 {% block body %}
+{% if app.user %}
+        <a href="{{ path('app_user_show', {'id': app.user.id}) }}" class="btn btn-primary">
+            Go to your profile
+        </a>
+    {% else %}
+        <p>Please <a href="{{ path('app_login') }}">login</a> to access your profile.</p>
+    {% endif %}
 	<h1>Posts index</h1>
 
 	<table class="table">

@@ -12,10 +12,14 @@
 
 		{% block javascripts %}
 			{% block importmap %}
-				{{ importmap('app') }}
+				{# {{ importmap('app') }} #}
 			{% endblock %}
 		{% endblock %}
 	</head>
-	<body class="bg-light"> {% block body %}{% endblock %}
-		</body>
-	</html>
+	<body class="bg-light"> 
+	<a href="{{path('app_login')}}">Connexion</a>
+	<a href="{{path('app_register')}}">Inscription</a>
+	{% block body %}{% endblock %}
+
+	</body>
+</html>

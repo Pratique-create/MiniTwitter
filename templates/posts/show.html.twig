@@ -6,39 +6,25 @@
 {% block body %}
 	<h1>Posts</h1>
 
-	<div>
-		<div>
-			<img>
-			<p>
-				{{ post.UserId.username }}
-			</p>
-		</div>
-		<div>
-			<p>
-				{{ post.content }}
-			</p>
-		</div>
-		<div>
-			<p>
-				{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}
-			</p>
-			<div>
-				<button>
-					RT
-				</button>
-				<p>
-					RT si t'es triste
-				</p>
-			</div>
-			<div>
-				<button>
-					Like
-				</button>
-				<p>
-					Like si tu veux avoir astra yao
-				</p>
-			</div>
-			<div>
+    <div>
+        <div>
+            <img>
+            <p> {{ post.UserId.username }} </p>
+        </div>
+        <div>
+            <p> {{ post.content }} </p>
+        </div>
+        <div>
+        <p> {{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }} </p>
+        <div>
+            <button> RT </button>
+            <p> RT si t'es triste </p>
+        </div>
+        <div>
+            <button> Like </button>
+            <p> Like si tu veux avoir astra yao </p>
+        </div>
+    <div>
 
 				<a href="{{ path('app_posts_index') }}">back to list</a>
 

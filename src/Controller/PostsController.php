@@ -25,7 +25,13 @@ final class PostsController extends AbstractController
     #[Route('/new', name: 'app_posts_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        
         $post = new Posts();
+        $user = $this->getUser();
+
+        if ($user) {
+            $post->setUserId($user);
+        }
         $form = $this->createForm(PostsType::class, $post);
         $form->handleRequest($request);
 

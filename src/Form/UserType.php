@@ -7,10 +7,12 @@ use Symfony\Bundle\SecurityBundle\Security as SecurityBundleSecurity;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use libphonenumber\PhoneNumberFormat;
+use libphonenumber\PhoneNumberUtil;
+use Misd\PhoneNumberBundle\Form\Type\PhoneNumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Security\Core\Security;
-use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class UserType extends AbstractType
 {
@@ -24,31 +26,28 @@ class UserType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('number')
-            ->add('username');
-
-            if ($this->security->getUser()) {
-                $builder->add('password', PasswordType::class, [
-                    'required' => false,
-                    'empty_data' => '',
-                    'mapped' => false,
-                    'attr' => [
-                        'placeholder' => "Leave empty if you don't want to change it",
-                    ],
-                    'constraints' => [
-                        new NotBlank([
-                            'message' => 'Please enter a password',
-                        ]),
-                        new Length([
-                            'min' => 6,
-                            'minMessage' => 'Your password should be at least {{ limit }} characters',
-                            // max length allowed by Symfony for security reasons
-                            'max' => 4096,
-                        ]),
-                    ],
-                ])
-            ->add('password')
-            ->add('profilePicture')
+            ->add('number', PhoneNumberType::class, ['default_region' => PhoneNumberUtil::UNKNOWN_REGION, 'format' => PhoneNumberFormat::INTERNATIONAL, 'required' => false])
+            ->add('username')
+            ->add('password', PasswordType::class, [
+                'required' => false, 
+                'empty_data' => '',
+                'mapped' => false,
+                'attr' => [
+                    'placeholder' => 'Keep it empty if you wish to keep your actual password.',  
+                ],
+                'constraints' => [
+                new Length([
+                    'min' => 6,
+                    'minMessage' => 'Your password should be at least {{ limit }} characters',
+                    // max length allowed by Symfony for security reasons
+                    'max' => 4096,
+                ]),],
+            ])
+            ->add('profilePicture', FileType::class, [
+                'label' => 'Photo de profil (JPG, PNG)', 
+                'mapped' => false,
+                'required' => false, 
+            ])
         ;
     }
     }

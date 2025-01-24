@@ -4,42 +4,46 @@
 {% endblock %}
 
 {% block body %}
-{% if app.user %}
-        <a href="{{ path('app_user_index', {'id': app.user.id}) }}" class="btn btn-primary">
-            Go to your profile
-        </a>
-    {% else %}
-        <p>Please <a href="{{ path('app_login') }}">login</a> to access your profile.</p>
-    {% endif %}
-	<h1>Posts index</h1>
-{#
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Content</th>
-				<th>CreatedAt</th>
-				<th>actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for post in posts %}
-				<tr>
-					<td>{{ post.id }}</td>
-					<td>{{ post.content }}</td>
-					<td>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-					<td>
-						<a href="{{ path('app_posts_show', {'id': post.id}) }}">show</a>
-						<a href="{{ path('app_posts_edit', {'id': post.id}) }}">edit</a>
-					</td>
-				</tr>
-			{% else %}
-				<tr>
-					<td colspan="4">no records found</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+	<h1>Tweets</h1>
 
-	<a href="{{ path('app_posts_new') }}">Create new</a> #}
-{% endblock %}
+	{% for post in posts %}
+		<div>
+			<div>
+				<img>
+				<p>{{ post.UserId.username }}</p>
+			</div>
+			<div>
+				<p>{{ post.content|slice(0, 100) }}</p>
+			</div>
+			<div>
+				<p>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</p>
+				<div>
+					<button>
+						RT
+					</button>
+					<p>
+						RT si t'es triste
+					</p>
+				</div>
+				<div>
+					<button>
+						Like
+					</button>
+					<p>
+						Like si tu veux avoir astra yao
+					</p>
+				</div>
+				<div>
+					<a href="{{ path('app_posts_show', {'id': post.id}) }}">show</a>
+					<a href="{{ path('app_posts_edit', {'id': post.id}) }}">edit</a>
+				</div>
+			</div>
+
+		{% else %}
+			<p>
+				Pas de données trouver
+			</p>
+		{% endfor %}
+
+		<a href="{{ path('app_posts_new') }}">Create new</a>
+	{% endblock %}

@@ -10,15 +10,15 @@
 
 {% block body %}
 
-<div class="">
 	<div class="">
 		<div class="">
-			<img src="{{ user.profilePicture }}" alt="Profile Picture">
-		</div>
-		<div class="">
-			<h1>{{ user.username }}</h1>
-			{# <p>{{ user.email }}</p> #}
-		</div>
+			<div class="">
+				<img src="{{ asset(user.getprofilePicture()) }}" alt="Photo de profil" style="max-width: 150px; max-height: 150px;">
+			</div>
+			<div class="">
+				<h1>{{ user.username }}</h1>
+				{# <p>{{ user.email }}</p> #}
+			</div>
 
 		<div class="">
 			<h2>Latest Tweets</h2>

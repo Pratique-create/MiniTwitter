@@ -1,44 +1,4 @@
-{# {% extends 'base.html.twig' %}
 
-{% block title %}
-	{{user.username}}'s Profile
-{% endblock %}
-
-{% block body %}
-
-	<div class="">
-		<div class="">
-			<div class="">
-				<img src="{{ user.profilePicture }}" alt="Profile Picture">
-			</div>
-			<div class="">
-				<h1>{{ user.username }}</h1>
-				{# <p>{{ user.email }}</p> #}
-			</div>
-
-			<div class="">
-				<h2>Latest Tweets</h2>
-
-				{% for post in posts %}
-					<div class="">
-						<p>{{ post.content }}</p>
-						<span>Posted on
-							{{ post.createdAt|date('Y-m-d H:i') }}</span>
-					</div>
-				{% else %}
-					<p>No tweets to show.</p>
-				{% endfor %}
-			</div>
-		</div>
-
-	</div>
-	<div
-		class="">
-		{# <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a> #}
-		<a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
-	</div>
-{% endblock %}
- #}
 
 
 

@@ -26,9 +26,8 @@ class Posts
     #[ORM\Column]
     private ?DateTimeImmutable $createdAt = null;
 
-    public function __construct(SessionInterface $session){
+    public function __construct(){
         $this->createdAt = new DateTimeImmutable();
-        $this->user_id = $session->get('user_id');
     }
 
     public function getId(): ?int

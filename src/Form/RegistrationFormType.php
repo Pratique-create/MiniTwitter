@@ -7,13 +7,13 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use libphonenumber\PhoneNumberFormat;
+use libphonenumber\PhoneNumberUtil;
 use Misd\PhoneNumberBundle\Form\Type\PhoneNumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Form\CallbackTransformer;
 
 class RegistrationFormType extends AbstractType
 {
@@ -48,17 +48,7 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             
-            ->add('number', PhoneNumberType::class, ['default_region' => 'FR', 'format' => PhoneNumberFormat::NATIONAL, 'required' => false])
-
-            // ->get('number')
-            //     ->addModelTransformer(new CallbackTransformer (
-            //         function ($number): ?string {
-                        
-            //         },
-            //         function ($number):  {
-                        
-            //         }
-            //     ))
+            ->add('number', PhoneNumberType::class, ['default_region' => PhoneNumberUtil::UNKNOWN_REGION, 'format' => PhoneNumberFormat::INTERNATIONAL, 'required' => false])
         ;
     } 
 

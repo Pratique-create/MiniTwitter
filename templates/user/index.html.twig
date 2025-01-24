@@ -9,7 +9,7 @@
 	<div class="">
 		<div class="">
 			<div class="">
-				<img src="{{ user.profilePicture }}" alt="Profile Picture">
+				<img src="{{ asset(user.getprofilePicture()) }}" alt="Photo de profil" style="max-width: 150px; max-height: 150px;">
 			</div>
 			<div class="">
 				<h1>{{ user.username }}</h1>

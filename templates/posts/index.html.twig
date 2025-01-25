@@ -17,32 +17,9 @@
 			</div>
 			<div>
 				<p>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</p>
-				<div>
-					<button>
-						RT
-					</button>
-					<p>
-						RT si t'es triste
-					</p>
-				</div>
-				<div>
-					<button>
-						Like
-					</button>
-					<p>
-						Like si tu veux avoir astra yao
-					</p>
-				</div>
-				<div>
-					<a href="{{ path('app_posts_show', {'id': post.id}) }}">show</a>
-					<a href="{{ path('app_posts_edit', {'id': post.id}) }}">edit</a>
-				</div>
 			</div>
 
-		{% else %}
-			<p>
-				Pas de données trouver
-			</p>
+			{% else %}
 		{% endfor %}
 
 		<a href="{{ path('app_posts_new') }}">Create new</a>

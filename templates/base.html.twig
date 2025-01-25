@@ -13,11 +13,14 @@
 
 		{% block javascripts %}
 			{% block importmap %}
-				{{ importmap('app') }}
+				{# {{ importmap('app') }} #}
 			{% endblock %}
 		{% endblock %}
 	</head>
 	<body class="bg-light">
+
+		<a href="{{path('app_login')}}">Connexion</a>
+		<a href="{{path('app_register')}}">Inscription</a>
 		{% block body %}
 			<header>
 				<nav>
@@ -32,6 +35,7 @@
 					{% endif %}
 				</header>
 			{% endblock %}
+
 		</body>
 	</body>
 </html></body></html>

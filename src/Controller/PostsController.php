@@ -11,21 +11,29 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+use App\Repository\UserRepository;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+
 #[Route('/posts')]
 final class PostsController extends AbstractController
 {
     #[Route(name: 'app_posts_index', methods: ['GET'])]
-    public function index(PostsRepository $postsRepository): Response
-    {
+    public function index(PostsRepository $postsRepository, UserRepository $userRepository): Response
+{
         return $this->render('posts/index.html.twig', [
             'posts' => $postsRepository->findAll(),
+            'users' => $userRepository ->findAll(),
         ]);
     }
 
     #[Route('/new', name: 'app_posts_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, SessionInterface $session): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_register');
+        }
         $post = new Posts();
+        $post -> setUserId($this->getUser());
         $form = $this->createForm(PostsType::class, $post);
         $form->handleRequest($request);
 

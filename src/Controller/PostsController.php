@@ -33,7 +33,7 @@ final class PostsController extends AbstractController
             return $this->redirectToRoute('app_register');
         }
         $post = new Posts();
-        $post -> setUserId($this->getUser());
+        $post -> setUser($this->getUser());
         $form = $this->createForm(PostsType::class, $post);
         $form->handleRequest($request);
 

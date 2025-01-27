@@ -30,5 +30,7 @@
 
 				<a href="{{ path('app_posts_edit', {'id': post.id}) }}">edit</a>
 
+                {# <a href="{{path('app_user_index', {'id': user.id}) }}">Profile</a> #}
+
 				{{ include('posts/_delete_form.html.twig') }}
 			{% endblock %}

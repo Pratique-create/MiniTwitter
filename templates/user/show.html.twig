@@ -24,11 +24,13 @@
 				<th>Username</th>
 				<td>{{ user.username }}</td>
 			</tr>
+			<tr>
 			{% if app.user %}
 				{{ form_row(form.password) }}
 			{% endif %}
 			<button class="btn">{{ button_label|default('Save') }}</button>
 			{{ form_end(form) }}
+			</tr>
 			<tr>
 				<th>ProfilePicture</th>
 				<td>{{ user.profilePicture }}</td>

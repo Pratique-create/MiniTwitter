@@ -1,32 +1,242 @@
 * {
-    box-sizing: border-box;
+    outline: none;
+
 }
 
 body {
-    margin: auto;
+    background-color: #0D1117;
+    color: white;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    text-align: center;
 }
 
-.h1-home-page {
-    font-weight: 700;
-    font-size: 24px;
-    font-family: 'Roboto', sans-serif;
+.background {
+    background: linear-gradient(180deg, rgba(31, 111, 235, 1) 0%, rgba(13, 17, 23, 1) 100%);
+    background-repeat: no-repeat;
+    color: white;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
-header {
+h1 {
+    color: white;
+    font-size: 2.5rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: 550;
+}
+
+.logo {
+    width: 10px;
+    fill: #1F6FEB;
+    height: auto;
+    margin-bottom: 20px;
     display: flex;
     justify-content: center;
-    flex-direction: column;
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-
     
 }
 
-img {
-    height: 40px;
-    width: 40px;
+.buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* .btn-register, .btn-login {
+    width: 80%;
+    max-width: 450px;
+    height: 55px;
+    color: white;
+    text-align: center;
+    border-radius: 30px;
+    border: 2px solid white;
+    line-height: 55px;
+    font-size: 1.5rem;
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.btn-login {
+    color: #0D1117;
+    border: 2px solid #0D1117;
+}
+
+.btn-register:hover {
+    background-color: white;
+    color: #0D1117;
+}
+
+.btn-login:hover {
+    background-color: #0D1117;
+    color: white;
+} */
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid #C9D1D9;
+    color: white;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+
+
+
+.form-login {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    width: 100%;
+}
+
+.form-group {
+    position: relative;
+}
+
+.input-login, .button-login {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    border-radius: 0;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.input-login {
+    background-color: #30363D;
+    outline: none;
+}
+
+.input-login:focus {
+    border-color: #C9D1D9;
+    background-color: #30363D;
+    outline: none;
+    border: none;
+    border: 2px solid #C9D1D9;
+
+}
+
+.button-login {
+    background-color: transparent;
+    color: #C9D1D9;
+    font-weight: bold;
+    cursor: pointer;
+    border: 1px solid #C9D1D9;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button-login:hover {
+    background-color: #C9D1D9;
+    color: #1F6FEB;
+    transform: scale(1.05);
+}
+
+.button-login:active {
+    transform: scale(0.95);
+}
+
+.label-login {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #999999;
+    padding: 0 4px;
+    transition: 0.3s ease all;
+    pointer-events: none;
+}
+
+.input-login:focus + .label-login,
+.input-login:not(:placeholder-shown) + .label-login {
+    top: 0;
+    transform: translateY(-50%) scale(0.9);
+    font-size: 12px;
+    color: #C9D1D9;
+}
+
+.form-login + .label-login {
+    display: none; 
+}
+
+
+@media (max-width: 767px) {
+    h1 {
+        font-size: 2.5rem;
+        margin-top: 20px;
+    }
+
+    .logo {
+        width: 140px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    .btn-register, .btn-login {
+        font-size: 1.4rem;
+        width: 85%;
+        max-width: 420px;
+        height: 55px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    .logo {
+        width: 160px;
+    }
+
+    .btn-register, .btn-login {
+        font-size: 1.5rem;
+        width: 85%;
+        max-width: 450px;
+        height: 55px;
+    }
+}
+
+@media (min-width: 1280px) {
+    h1 {
+        font-size: 3.5rem;
+    }
+
+    .logo {
+        width: 180px;
+    }
+
+    .btn-register, .btn-login {
+        font-size: 1.8rem;
+        width: 500px;
+        max-width: 600px;
+        height: 60px;
+    }
 }

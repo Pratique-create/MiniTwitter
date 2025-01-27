@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>
-			{% block title %}Welcome
+			{% block title %}Astra - Accueil
 			{% endblock %}
 		</title>
 		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
@@ -18,35 +18,7 @@
 			{% endblock %}
 		{% endblock %}
 	</head>
-	<body class="bg-dark text-light">
-		<header>
-		
-			
-		</header>
-		<main>
-		<img src="{{ asset('images/star.svg') }}" class="logo" alt="Logo Astra">
-			<nav>
-				
-				<h1 class="h1-home-page">Bienvenue!</h1>
-				{% if app.user %}
-				
-					<a href="{{ path('app_logout') }}" class="btn">Log out</a>
-					<a href="{{ path('app_user_index', {'id': app.user.id}) }}" class="btn">Profile</a>
-					<a href="{{ path('app_posts_index') }}" class="btn">Feed</a>
-				
-				{% else %}
-				
-				<main>
-				<div class="d-flex justify-content-center align-items-center top-50 start-50 flex-column">
-				
-					<a href="{{ path('app_login') }}" class="rounded-pill btn border-2 border-primary text-light">Se Connecter</a>
-					<a href="{{ path('app_register') }}" class="rounded-pill btn border-2 border-light text-light">S'inscrire</a>
-				</div>
-				</main>
-				
-				{% endif %}
-			</nav>
-			</main>
+	<body>
 		{% block body %}{% endblock %}
 	</body>
 </html>

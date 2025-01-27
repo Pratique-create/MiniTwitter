@@ -9,16 +9,24 @@
 		<div>
 			<div>
 				<img>
-				<p>{{ post.User.username }}</p>
+				<p>{{ post.user.username }}</p>
 			</div>
 			<div>
 				<p>{{ post.content|slice(0, 100) }}</p>
 			</div>
 			<div>
 				<p>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</p>
+
+				<div>
+					<a href="{{ path('app_posts_show', {'id': post.id}) }}">show</a>
+					<a href="{{ path('app_posts_edit', {'id': post.id}) }}">edit</a>
+				</div>
 			</div>
 
-			{% else %}
+		{% else %}
+			<p>
+				Pas de données trouvées
+			</p>
 		{% endfor %}
 
     <a href="{{ path('app_posts_new') }}">Create new</a>

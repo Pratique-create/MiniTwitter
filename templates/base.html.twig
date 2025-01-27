@@ -21,6 +21,7 @@
 				{% if app.user %}
 					<a href="{{ path('app_logout') }}" class="btn">Log out</a>
 					<a href="{{ path('app_user_index', {'id': app.user.id}) }}" class="btn">Profile</a>
+					<a href="{{ path('app_posts_index') }}" class="btn">Feed</a>
 				{% else %}
 					<a href="{{ path('app_login') }}" class="btn">Log in</a>
 					<a href="{{ path('app_register') }}" class="btn">Sign up</a>

@@ -30,7 +30,7 @@ class UserType extends AbstractType
             ->add('username')
             ->add('password', PasswordType::class, [
                 'required' => false, 
-                'empty_data' => '',
+                // 'empty_data' => '',
                 'mapped' => false,
                 'attr' => [
                     'placeholder' => 'Keep it empty if you wish to keep your actual password.',  

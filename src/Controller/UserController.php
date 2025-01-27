@@ -18,7 +18,8 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 #[Route('/user')]
 final class UserController extends AbstractController
 {
-    #[Route('/{id}', name: 'app_user_index', methods: ['GET'])]
+
+    #[Route('/user/{id}', name: 'app_user_index', methods: ['GET'])]
     public function index(int $id, UserRepository $userRepository, PostsRepository $postsRepository): Response
     {
         $user = $userRepository->find($id);
@@ -96,18 +97,20 @@ final class UserController extends AbstractController
             }
 
 
-            // $profilePicture = $form->get('profilePicture')->getData();
-            // if ($profilePicture) {
-            //     $picture = uniqid() . '.' . $profilePicture->guessExtension();
-            //     $profilePicture->move($this->getParameter('profile_pictures_directory'), $picture);
-            //     $user->setProfilePicture($picture);
-            // } elseif (!$user->getProfilePicture()) {
-            //     $user->setProfilePicture('/uploads/profile_pictures/default.png');
-            // }
+            $profilePicture = $form->get('profilePicture')->getData();
+            if ($profilePicture) {
+                $pictureFilename = uniqid() . '.' . $profilePicture->guessExtension();
+                $profilePicture->move(
+                    $this->getParameter('profile_pictures_directory'),
+                    $pictureFilename
+                );
+                $user->setProfilePicture('images/' . $pictureFilename);
+            }
+    
 
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_user_index', ['id' => $user->getId()]);
         }
 
         return $this->render('user/edit.html.twig', [

@@ -33,14 +33,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     // #[ORM\Column(nullable: true, type:'phone_number')]
     // private ?string $number = null;
 
-/**
-     * @ORM\Column(type="phone_number", nullable=true)
-     * @AssertPhoneNumber
-     * @Serializer\Type("libphonenumber\PhoneNumber")
-     *
-     * @var PhoneNumber
-     */
-    private $number;
+    #[ORM\Column(type: 'phone_number', nullable: true)]
+    #[AssertPhoneNumber]
+    private ?PhoneNumber $number = null;
+
+    // /**
+    //  * @ORM\Column(type="phone_number", nullable=true)
+    //  * @AssertPhoneNumber
+    //  * @Serializer\Type("libphonenumber\PhoneNumber")
+    //  *
+    //  * @var PhoneNumber
+    //  */
+    // private $number;
+
 
     #[ORM\Column(length: 25)]
     private ?string $username = null;
@@ -49,7 +54,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $profilePicture = 'C:\xampp\htdocs\projets\Mini-twitter\mini-twitter\templates\images\profil.png';
+    private ?string $profilePicture = 'images/profil.png';
 
     public function getId(): ?int
     {

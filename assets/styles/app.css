@@ -193,6 +193,33 @@ footer {
     display: none; 
 }
 
+/* button save edit profile user */
+.button-form-profile {
+    width: 80%;
+    height: 50px;
+    border-width: 3px;
+    border-color: #ffffff;
+
+    .check-hover {
+        display: none;
+    }
+    
+}
+
+
+
+.button-form-profile:hover {
+    background-color: #ffffff;
+    .check-edit {
+        display: none;
+    }
+    .check-hover {
+        display: block;
+    }
+}
+
+
+/*  */
 
 @media (max-width: 767px) {
     h1 {

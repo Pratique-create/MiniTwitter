@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Likes;
+use App\Entity\Posts;
 use App\Form\LikesType;
 use App\Repository\LikesRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -14,8 +15,8 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/likes')]
 final class LikesController extends AbstractController
 {
-    #[Route(name: 'add_like')]
-    public function addLike($postId, EntityManagerInterface $entityManager): Response
+    #[Route('/add/{id}',name: 'app_like')]
+    public function addLike(Posts $post, EntityManagerInterface $entityManager): Response
     {
         $user = $this->getUser();
         if (!$user){
@@ -23,28 +24,29 @@ final class LikesController extends AbstractController
         }
 
         $existingLike = $entityManager->getRepository(Likes::class)->findOneBy([
-            'post' => $postId,
+            'post' => $post,
             'user' => $user,
         ]);
     
         if ($existingLike) {
             $entityManager->remove($existingLike);
             $entityManager->flush();
-            return $this->json([
-                'message' => 'Vous n’aimez plus ce post.',
-                'status' => 'unliked']);
+            $this->addFlash('info', 'Vous avez annulé votre Like.');
         }
 
-        $like = new Likes();
-        $like -> setPostId($postId);
-        $like -> setUserId($user);
+        else {
+            $like = new Likes();
+            $like -> setPost($post);
+            $like -> setUser($user);
+    
+            $entityManager->persist($like);
+            $entityManager->flush();
+    
+            $this->addFlash('success', 'Vous avez like ce message !');
+        }
 
-        $entityManager->persist($like);
-        $entityManager->flush();
 
-        return $this->json([
-            'message' => 'Vous aimez ce post.',
-            'status' => 'liked']);
+        return $this->redirectToRoute('app_posts_index');
     }
 
     #[Route(name:'show_like')]

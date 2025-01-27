@@ -14,68 +14,108 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/likes')]
 final class LikesController extends AbstractController
 {
-    #[Route(name: 'app_likes_index', methods: ['GET'])]
-    public function index(LikesRepository $likesRepository): Response
+    #[Route(name: 'add_like')]
+    public function addLike($postId, EntityManagerInterface $entityManager): Response
     {
-        return $this->render('likes/index.html.twig', [
-            'likes' => $likesRepository->findAll(),
-        ]);
-    }
+        $user = $this->getUser();
+        if (!$user){
+            return $this->redirectToRoute('app_register');
+        }
 
-    #[Route('/new', name: 'app_likes_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
+        $existingLike = $entityManager->getRepository(Likes::class)->findOneBy([
+            'post' => $postId,
+            'user' => $user,
+        ]);
+    
+        if ($existingLike) {
+            $entityManager->remove($existingLike);
+            $entityManager->flush();
+            return $this->json([
+                'message' => 'Vous n’aimez plus ce post.',
+                'status' => 'unliked']);
+        }
+
         $like = new Likes();
-        $form = $this->createForm(LikesType::class, $like);
-        $form->handleRequest($request);
+        $like -> setPostId($postId);
+        $like -> setUserId($user);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($like);
-            $entityManager->flush();
+        $entityManager->persist($like);
+        $entityManager->flush();
 
-            return $this->redirectToRoute('app_likes_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('likes/new.html.twig', [
-            'like' => $like,
-            'form' => $form,
-        ]);
+        return $this->json([
+            'message' => 'Vous aimez ce post.',
+            'status' => 'liked']);
     }
 
-    #[Route('/{id}', name: 'app_likes_show', methods: ['GET'])]
-    public function show(Likes $like): Response
+    #[Route(name:'show_like')]
+    public function showNumberLike($postId, EntityManagerInterface $entityManager): Response
     {
-        return $this->render('likes/show.html.twig', [
-            'like' => $like,
-        ]);
+        $numberLike = $entityManager->getRepository(Likes::class)->count(['post' => $postId,]);
+        return $this->json(['likes' => $numberLike]);
     }
 
-    #[Route('/{id}/edit', name: 'app_likes_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Likes $like, EntityManagerInterface $entityManager): Response
-    {
-        $form = $this->createForm(LikesType::class, $like);
-        $form->handleRequest($request);
+    // #[Route(name: 'app_likes_index', methods: ['GET'])]
+    // public function index(LikesRepository $likesRepository): Response
+    // {
+    //     return $this->render('likes/index.html.twig', [
+    //         'likes' => $likesRepository->findAll(),
+    //     ]);
+    // }
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+    // #[Route('/new', name: 'app_likes_new', methods: ['GET', 'POST'])]
+    // public function new(Request $request, EntityManagerInterface $entityManager): Response
+    // {
+    //     $like = new Likes();
+    //     $form = $this->createForm(LikesType::class, $like);
+    //     $form->handleRequest($request);
 
-            return $this->redirectToRoute('app_likes_index', [], Response::HTTP_SEE_OTHER);
-        }
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $entityManager->persist($like);
+    //         $entityManager->flush();
 
-        return $this->render('likes/edit.html.twig', [
-            'like' => $like,
-            'form' => $form,
-        ]);
-    }
+    //         return $this->redirectToRoute('app_likes_index', [], Response::HTTP_SEE_OTHER);
+    //     }
 
-    #[Route('/{id}', name: 'app_likes_delete', methods: ['POST'])]
-    public function delete(Request $request, Likes $like, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$like->getId(), $request->getPayload()->getString('_token'))) {
-            $entityManager->remove($like);
-            $entityManager->flush();
-        }
+    //     return $this->render('likes/new.html.twig', [
+    //         'like' => $like,
+    //         'form' => $form,
+    //     ]);
+    // }
 
-        return $this->redirectToRoute('app_likes_index', [], Response::HTTP_SEE_OTHER);
-    }
+    // #[Route('/{id}', name: 'app_likes_show', methods: ['GET'])]
+    // public function show(Likes $like): Response
+    // {
+    //     return $this->render('likes/show.html.twig', [
+    //         'like' => $like,
+    //     ]);
+    // }
+
+    // #[Route('/{id}/edit', name: 'app_likes_edit', methods: ['GET', 'POST'])]
+    // public function edit(Request $request, Likes $like, EntityManagerInterface $entityManager): Response
+    // {
+    //     $form = $this->createForm(LikesType::class, $like);
+    //     $form->handleRequest($request);
+
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $entityManager->flush();
+
+    //         return $this->redirectToRoute('app_likes_index', [], Response::HTTP_SEE_OTHER);
+    //     }
+
+    //     return $this->render('likes/edit.html.twig', [
+    //         'like' => $like,
+    //         'form' => $form,
+    //     ]);
+    // }
+
+    // #[Route('/{id}', name: 'app_likes_delete', methods: ['POST'])]
+    // public function delete(Request $request, Likes $like, EntityManagerInterface $entityManager): Response
+    // {
+    //     if ($this->isCsrfTokenValid('delete'.$like->getId(), $request->getPayload()->getString('_token'))) {
+    //         $entityManager->remove($like);
+    //         $entityManager->flush();
+    //     }
+
+    //     return $this->redirectToRoute('app_likes_index', [], Response::HTTP_SEE_OTHER);
+    // }
 }

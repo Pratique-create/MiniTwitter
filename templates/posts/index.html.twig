@@ -9,7 +9,7 @@
             <div>
                 <div>
                     <img>
-                    <p>{{ post.UserId.username }}</p>
+                    <p>{{ post.user.username }}</p>
                 </div>
                 <div>
                 <p>{{ post.content|slice(0, 100) }}</p>
@@ -18,15 +18,16 @@
                 <p>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</p>
                 <div>
                     <button> RT </button>
-                    <p> RT si t'es triste </p>
+                    <p> Nombres de RT </p>
                 </div>
                 <div>
                     <button> Like </button>
-                    <p> Like si tu veux avoir evelyn </p>
+                    <p> Nombres de likes </p>
                 </div>
                 <div>
                     <a href="{{ path('app_posts_show', {'id': post.id}) }}">show</a>
                     <a href="{{ path('app_posts_edit', {'id': post.id}) }}">edit</a>
+                    <a href="{{ path('app_retweet', {'id': post.id}) }}" class="btn btn-primary">Retweeter</a>
                 </div>
             </div>
 

@@ -1,3 +1,32 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
-    background-color: #2E4CD2;
+    margin: auto;
+}
+
+.h1-home-page {
+    font-weight: 700;
+    font-size: 24px;
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    
+}
+
+img {
+    height: 40px;
+    width: 40px;
 }

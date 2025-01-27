@@ -59,7 +59,7 @@ a {
     text-decoration: none;
 }
 
-/* .btn-register, .btn-login {
+.btn-register, .btn-login {
     width: 80%;
     max-width: 450px;
     height: 55px;
@@ -89,7 +89,7 @@ a {
 .btn-login:hover {
     background-color: #0D1117;
     color: white;
-} */
+}
 
 footer {
     text-align: center;

@@ -164,6 +164,10 @@ footer {
     position: relative;
 }
 
+.form-group, .form-register {
+    width: 100%;
+}
+
 .input-login, .input-register, .button-login, .button-register {
     width: 100%;
     padding: 12px;

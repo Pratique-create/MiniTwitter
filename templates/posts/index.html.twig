@@ -10,7 +10,7 @@
 				<a
 					href="{{ path('app_user_index', {'id': app.user.id}) }}">
 					{# {{ dump(app.user.profilePicture) }} #}
-					<img src="{{ asset('uploads/profile_pictures/' ~ app.user.profilePicture) }}" class="pp-nav" alt="Photo de profil" style="max-width: 50px; max-height: 50px;">
+					<img src="{{ asset('config/public/images/' ~ app.user.profilePicture) }}" class="pp-nav" alt="Photo de profil" style="max-width: 50px; max-height: 50px;">
 				</a>
 				<img src="{{ asset('images/star_white.svg') }}" class="logo-nav" alt="Logo Astra">
 				<a href="{{ path('app_logout') }}" class="btn">Log out</a>

@@ -204,6 +204,7 @@ footer {
 }
 
 input:focus {
+    background-color: #30363D;
     outline: none !important;
     box-shadow: none !important;
 

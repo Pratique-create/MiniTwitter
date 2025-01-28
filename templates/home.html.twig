@@ -17,13 +17,23 @@
 		</header>
 
 		<main>
-			<img src="{{ asset('images/star.svg') }}" class="logo" alt="Logo Astra">
+		{% if (app.user) %}
+		<div class="container-home-arrow">
+			<img src="{{ asset('images/arrow-up-circle.svg') }}" class="logo logo-arrow" alt="arrow direction">
+			<p> Utiliser la barre de navigation en haut</p>
+			<h1>Hello {{ app.user.username }}!</h1>
+		</div>
+		{% else %}
+		<img src="{{ asset('images/star.svg') }}" class="logo" alt="Logo Astra">
 			<h1>Bienvenue !</h1>
 
 			<div class="buttons">
 				<a href="{{ path('app_register') }}" class="btn-register">S'inscrire</a>
 				<a href="{{ path('app_login') }}" class="btn-login">Se connecter</a>
 			</div>
+			
+		{% endif %}
+			
 		</main>
 
 		<footer>&copy; Copyright 2025 - Astra</footer>

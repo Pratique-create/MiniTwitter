@@ -18,11 +18,11 @@
                 <p>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</p>
                 <div>
                     <a href="{{ path('app_retweet', {'id': post.id}) }}" class="btn btn-primary">Retweeter</a>
-                    <p> Nombres de RT </p>
+                    <p> {{ retweetCount[post.id] }} </p>
                 </div>
                 <div>
                     <a href="{{ path('app_like', {'id': post.id}) }}" class="btn btn-primary">Like</a>
-                    <p> Nombres de likes </p>
+                    <p> {{ likeCount[post.id]}} </p>
                 </div>
                 <div>
                     <a href="{{ path('app_posts_show', {'id': post.id}) }}">show</a>

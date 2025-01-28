@@ -194,29 +194,35 @@ footer {
 }
 
 /* button save edit profile user */
-.button-form-profile {
-    width: 80%;
-    height: 50px;
-    border-width: 3px;
-    border-color: #ffffff;
-
-    .check-hover {
-        display: none;
-    }
-    
+.container-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 
+.button-form-profile {
+    width: 100%;
+    height: 45px;
+    border-width: 3px;
+    border-color: #ffffff;
+}
+
+.button-form-profile .bi-check {
+    height: 33px;
+    width: 35px;
+}
 
 .button-form-profile:hover {
     background-color: #ffffff;
-    .check-edit {
-        display: none;
-    }
-    .check-hover {
-        display: block;
-    }
+    color: #0D1117;
 }
+
+.button-form-profile:hover .bi-check {
+    fill: #000000;
+}
+
 
 
 /*  */

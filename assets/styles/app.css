@@ -230,19 +230,23 @@ footer {
     width: 100vw;
     /* height: 70px; */
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    
     justify-content: flex-end;
     border-bottom: 2px solid #ffffff;
     
 }
 
-
-
 .header-edit-form .nav-bar-edit {
-    width: 100%;
+    width: 50%;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    
+}
+
+.header-edit-form .nav-bar-edit .logo-edit {
+    display: inline;
 }
 /* fuse svg and edit and delete div */
 

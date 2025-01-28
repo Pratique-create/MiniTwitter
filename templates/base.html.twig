@@ -18,7 +18,7 @@
 			{% endblock %}
 		{% endblock %}
 	</head>
-	<body class="bg-light"> 
+	<body> 
 	{% for type, messages in app.flashes %}
     {% for message in messages %}
         <div class="alert alert-{{ type }}">
@@ -29,6 +29,5 @@
 	{# <a href="{{path('app_login')}}">Connexion</a>
 	<a href="{{path('app_register')}}">Inscription</a> #}
 	{% block body %}{% endblock %}
-
 	</body>
 </html>

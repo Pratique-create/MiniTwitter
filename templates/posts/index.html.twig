@@ -8,7 +8,7 @@
         {% for post in posts %}
             <div>
                 <div>
-                    <img>
+                    <img src="{{ asset(post.user.profilePicture) }}" alt="Photo de profil" style="max-width: 75px; max-height: 75px; border-radius: 50%;">
                     <p>{{ post.user.username }}</p>
                 </div>
                 <div>

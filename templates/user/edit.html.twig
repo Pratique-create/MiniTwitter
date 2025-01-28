@@ -6,16 +6,21 @@
 {% block body %}
 	<header id="header-edit-form">
 		<nav class="nav-bar-edit">
-		<div class="nav-bar-svg">
-			<img src="{{ asset('images/star.svg') }}" class="logo" alt="Logo Astra" style="max-width: 60px; max-height: 60px;">
-			<img src="{{ asset('images/box-arrow-right.svg') }}" class="logo" alt="logout icon" style="max-width: 30px; max-height: 30px;">
-		</div>	
-	</header>
-	<h1>Modifier votre profil</h1>
+			<div class="nav-bar-svg">
+				<img src="{{ asset('images/star.svg') }}" class="logo" alt="Logo Astra" style="max-width: 60px; max-height: 60px;">
+				<div>
+					<a href="{{ path('app_logout') }}" class="btn">
+						<img src="{{ asset('images/box-arrow-right.svg') }}" class="logo" alt="logout icon" style="max-width: 30px; max-height: 30px;">
+					</a>
+				</div>
+				
+			</div>
+		</header>
+		<h1>Modifier votre profil</h1>
 
-	{{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+		{{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
 
-	<a href="{{ path('app_user_index', {'id': app.user.id}) }}">back to profile</a>
+		<a href="{{ path('app_user_index', {'id': app.user.id}) }}">back to profile</a>
 
-	{{ include('user/_delete_form.html.twig') }}
-{% endblock %}
+		{{ include('user/_delete_form.html.twig') }}
+	{% endblock %}

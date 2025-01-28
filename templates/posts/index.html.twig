@@ -4,31 +4,46 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Tweets</h1>
+	<header>
+		<nav class="nav-bar">
+			{% if app.user %}
+				<a href="{{ path('app_user_index', {'id': app.user.id}) }}" class="btn">Profile</a>
+				<img src="{{ asset('images/star_white.svg') }}" class="logo-nav" alt="Logo Astra">
+				<a href="{{ path('app_logout') }}" class="btn">Log out</a>
 
-	{% for post in posts %}
-		<div>
-			<div>
-				<img>
-				<p>{{ post.user.username }}</p>
-			</div>
-			<div>
-				<p>{{ post.content|slice(0, 100) }}</p>
-			</div>
-			<div>
-				<p>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</p>
+				{% else %}
+			{% endif %}
+		</nav>
+	</header>
+	<main>
+		<h1>Tweets</h1>
 
+		{% for post in posts %}
+			<div>
 				<div>
-					<a href="{{ path('app_posts_show', {'id': post.id}) }}">show</a>
-					<a href="{{ path('app_posts_edit', {'id': post.id}) }}">edit</a>
+					<img>
+					<p>{{ post.user.username }}</p>
 				</div>
-			</div>
+				<div>
+					<p>{{ post.content|slice(0, 100) }}</p>
+				</div>
+				<div>
+					<p>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</p>
 
-		{% else %}
-			<p>
-				Pas de données trouvées
-			</p>
-		{% endfor %}
+					<div>
+						<a href="{{ path('app_posts_show', {'id': post.id}) }}">show</a>
+						<a href="{{ path('app_posts_edit', {'id': post.id}) }}">edit</a>
+					</div>
+				</div>
 
-		<a href="{{ path('app_posts_new') }}">Create new</a>
+			{% else %}
+				<p>
+					Pas de données trouvées
+				</p>
+			{% endfor %}
+
+			<a href="{{ path('app_posts_new') }}">Create new</a>
+		</main>
+		<footer>&copy; Copyright 2025 - Astra</footer>
+
 	{% endblock %}

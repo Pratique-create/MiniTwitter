@@ -225,28 +225,26 @@ footer {
 /* ============================================================================= */
 
 /* style header bar */
-#header-edit-form {
-    width: 99vw;
-    height: 70px;
+.header-edit-form {
+    position: relative;
+    width: 100vw;
+    /* height: 70px; */
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    border-bottom: 2px solid #ffffff;
+    
 }
 
-#header-edit-form .nav-bar-edit {
-    display: felx;
-    justify-content: flex-end;
-    width: 50%;
-}
 
-#header-edit-form .nav-bar-edit .nav-bar-svg {
+
+.header-edit-form .nav-bar-edit {
     width: 100%;
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
 }
-
+/* fuse svg and edit and delete div */
 
 
 /* ============================================================================= */

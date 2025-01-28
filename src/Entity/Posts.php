@@ -32,6 +32,8 @@ class Posts
 
 
 
+    
+
     public function getId(): ?int
     {
         return $this->id;

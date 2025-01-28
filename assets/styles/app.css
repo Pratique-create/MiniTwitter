@@ -4,6 +4,8 @@ html, body {
     height: 100%;
     display: flex;
     flex-direction: column;
+    outline: none;
+
 }
 
 body {
@@ -282,8 +284,87 @@ input:focus {
     display: none; 
 }
 
+
 .form-register + .label-register {
     display: none; 
+
+/* button save edit profile user */
+.container-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.button-form-profile {
+    width: 100%;
+    height: 45px;
+    border-width: 3px;
+    border-color: #ffffff;
+}
+
+.button-form-profile .bi-check {
+    height: 33px;
+    width: 35px;
+}
+
+.button-form-profile:hover {
+    background-color: #ffffff;
+    color: #0D1117;
+}
+
+.button-form-profile:hover .bi-check {
+    fill: #000000;
+}
+/* ============================================================================= */
+
+/* style header bar */
+#header-edit-form {
+    width: 99vw;
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+#header-edit-form .nav-bar-edit {
+    display: felx;
+    justify-content: flex-end;
+    width: 50%;
+}
+
+#header-edit-form .nav-bar-edit .nav-bar-svg {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+/* ============================================================================= */
+
+@media (max-width: 767px) {
+    h1 {
+        font-size: 2.5rem;
+        margin-top: 20px;
+    }
+
+    .logo {
+        width: 140px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    .btn-register, .btn-login {
+        font-size: 1.4rem;
+        width: 85%;
+        max-width: 420px;
+        height: 55px;
+    }
+
 }
 
 .agree-terms {
@@ -346,8 +427,10 @@ input:focus {
 
     }
 
+
     .logo-register, .logo-login {
         width: 130px;
         margin: 0;
     }
-}
+
+}}

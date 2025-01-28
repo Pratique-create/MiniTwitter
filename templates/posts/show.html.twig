@@ -39,25 +39,36 @@
 					<button>
 						RT
 					</button>
-					<p>
-						RT si t'es triste
-					</p>
+
 				</div>
+
 				<div>
-					<button>
-						Like
-					</button>
-					<p>
-						Like si tu veux avoir astra yao
-					</p>
-				</div>
-				<div>
+					<div>
+						<div>
+							<img>
+							<p>
+								{{ post.UserId.username }}
+							</p>
+						</div>
+						<div>
+							<p>
+								{{ post.content }}
+							</p>
+						</div>
+						<div>
+							<p>
+								{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}
+							</p>
+							<div>
 
-					<a href="{{ path('app_posts_index') }}">back to list</a>
+								<a href="{{ path('app_posts_index') }}">back to list</a>
 
-					<a href="{{ path('app_posts_edit', {'id': post.id}) }}">edit</a>
+								<a href="{{ path('app_posts_edit', {'id': post.id}) }}">edit</a>
 
-					{{ include('posts/_delete_form.html.twig') }}
+								{{ include('posts/_delete_form.html.twig') }}
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -65,3 +76,6 @@
 	<footer>&copy; Copyright 2025 - Astra</footer>
 
 {% endblock %}
+{# <a href="{{path('app_user_index', {'id': user.id}) }}">Profile</a> #}
+
+{{ include('posts/_delete_form.html.twig') }}{% endblock %}

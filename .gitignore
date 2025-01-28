@@ -24,6 +24,7 @@
 /assets/vendor/
 ###< symfony/asset-mapper ###
 
+###> symfony/webpack-encore-bundle ###
 .env
 .env.dev
 .env.test

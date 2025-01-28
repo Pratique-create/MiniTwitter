@@ -32,6 +32,17 @@ final class PostsController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager, SessionInterface $session): Response
     {
         $post = new Posts();
+
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_register');
+        }
+        
+        $post = new Posts();
+        $user = $this->getUser();
+
+        if ($user) {
+            $post->setUserId($user);
+        }
         $form = $this->createForm(PostsType::class, $post);
         $form->handleRequest($request);
 

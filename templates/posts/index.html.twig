@@ -28,27 +28,47 @@
 				<div class="userIDTweet">
 					<img class="imgProfileTweet" src="{{ asset(app.user.profilePicture) }}" alt="Photo de profil" style="max-width: 50px; max-height: 50px;">
 					<h3>{{ post.user.username }}</h3>
-				</div>
-				<div class="userContentTweet">
-					<p>{{ post.content|slice(0, 250) }}</p>
-				</div>
-				<div>
-					<p>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</p>
 
-					<div>
-						<a href="{{ path('app_posts_show', {'id': post.id}) }}">show</a>
-						<a href="{{ path('app_posts_edit', {'id': post.id}) }}">edit</a>
-					</div>
-				</div>
+					<h1>Tweets</h1>
 
-			{% else %}
-				<p>
-					Pas de tweets trouvées
-				</p>
-			{% endfor %}
+					{% for post in posts %}
+						<div>
+							<div>
+								<img>
+								<p>{{ post.user.username }}</p>
+							</div>
+							<div>
+								<p>{{ post.content|slice(0, 100) }}</p>
+							</div>
+							<div>
+								<p>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</p>
 
-			<a href="{{ path('app_posts_new') }}">Créer un tweet</a>
-		</main>
-		<footer>&copy; Copyright 2025 - Astra</footer>
+								<div>
+									<a href="{{ path('app_posts_show', {'id': post.id}) }}">show</a>
+									<a href="{{ path('app_posts_edit', {'id': post.id}) }}">edit</a>
+								</div>
+								<div class="userContentTweet">
+									<p>{{ post.content|slice(0, 250) }}</p>
+								</div>
+								<div>
+									<p>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</p>
 
-	{% endblock %}
+									<div>
+										<a href="{{ path('app_posts_show', {'id': post.id}) }}">show</a>
+										<a href="{{ path('app_posts_edit', {'id': post.id}) }}">edit</a>
+									</div>
+								</div>
+
+							{% else %}
+								<p>
+									Pas de tweets trouvées
+								</p>
+							{% endfor %}
+
+							<a href="{{ path('app_posts_new') }}">Créer un tweet</a>
+						</main>
+						<footer>&copy; Copyright 2025 - Astra</footer>
+
+						<a href="{{path('app_posts_new')}}">Create new</a>>>
+					{% endblock %}
+				{% endblock %}

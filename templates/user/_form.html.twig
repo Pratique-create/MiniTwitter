@@ -1,4 +1,41 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+
+
+<div>
+	{% if user.profilePicture %}
+		<img src="{{ asset(user.profilePicture) }}" alt="Photo de profil" style="max-width: 100px; max-height: 100px;">
+	{% else %}
+		<img src="{{ asset('./images/profil.png') }}" alt="Photo de profil par défaut" style="max-width: 100px; max-height: 100px;">
+	{% endif %}
+</div>
+
+<div>
+	<label>Email :</label>
+	{{ form_widget(form.email) }}
+</div>
+
+<div>
+	<label>Numéro de téléphone :</label>
+	{{ form_widget(form.number) }}
+</div>
+
+<div>
+	<label>Nom d'utilisateur :</label>
+	{{ form_widget(form.username) }}
+</div>
+
+<div>
+	<label>Mot de passe :</label>
+	{{ form_widget(form.password) }}
+</div>
+
+
+<div>
+	<label>Photo de profil :</label>
+	{{ form_widget(form.profilePicture) }}
+</div>
+
+
+<button class="btn">Mettre à jour</button>
+
 {{ form_end(form) }}

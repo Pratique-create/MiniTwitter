@@ -18,8 +18,8 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 final class PostsController extends AbstractController
 {
     #[Route(name: 'app_posts_index', methods: ['GET'])]
-    public function index(PostsRepository $postsRepository, UserRepository $userRepository): Response
-{
+    public function index(PostsRepository $postsRepository): Response
+    {
         return $this->render('posts/index.html.twig', [
             'posts' => $postsRepository->findAll(),
             'users' => $userRepository ->findAll(),
@@ -29,11 +29,7 @@ final class PostsController extends AbstractController
     #[Route('/new', name: 'app_posts_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager, SessionInterface $session): Response
     {
-        if (!$this->getUser()) {
-            return $this->redirectToRoute('app_register');
-        }
         $post = new Posts();
-        $post -> setUserId($this->getUser());
         $form = $this->createForm(PostsType::class, $post);
         $form->handleRequest($request);
 

@@ -8,6 +8,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use App\Repository\UserRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use libphonenumber\PhoneNumber;
+use Misd\PhoneNumberBundle\Validator\Constraints\PhoneNumber as AssertPhoneNumber;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
@@ -28,8 +30,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
-    #[ORM\Column(nullable: true, type:'string')]
-    private ?string $number = null;
+    // #[ORM\Column(nullable: true, type:'phone_number')]
+    // private ?string $number = null;
+
+    #[ORM\Column(type: 'phone_number', nullable: true)]
+    #[AssertPhoneNumber]
+    private ?PhoneNumber $number = null;
+
+    // /**
+    //  * @ORM\Column(type="phone_number", nullable=true)
+    //  * @AssertPhoneNumber
+    //  * @Serializer\Type("libphonenumber\PhoneNumber")
+    //  *
+    //  * @var PhoneNumber
+    //  */
+    // private $number;
+
 
     #[ORM\Column(length: 25)]
     private ?string $username = null;
@@ -37,8 +53,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $password = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $profilePicture = null;
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $profilePicture = 'images/profil.png';
 
     public function getId(): ?int
     {
@@ -57,12 +73,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getNumber(): ?string
+    public function getNumber(): ?PhoneNumber
     {
         return $this->number;
     }
 
-    public function setNumber(?string $number): static
+    public function setNumber(?PhoneNumber $number): static
     {
         $this->number = $number;
 

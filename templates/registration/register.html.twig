@@ -1,51 +1,55 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register
+{% block title %}Astra - Inscription
 {% endblock %}
 
 {% block body %}
+	<main>
+		<div class="register-page">
+			<div class="box-logo">
+				<img src="{{ asset('images/star_blue.svg') }}" class="logo logo-register" alt="Logo Astra">
+			</div>
 
-	<div class="m-5 d-flex justify-content-center align-items-center flex-column">
+			<h1 class="h1-register">Inscrivez-vous !</h1>
+
+			{{ form_errors(registrationForm) }}
+
+			{{ form_start(registrationForm, { 'attr': {'class': 'form-register'} }) }}
 
 
-		<h1 class="h3 mb-3 font-weight-normal d-flex justify-content-center align-items-center m-5">Register</h1>
+			<div class="form-group">
+				{{ form_widget(registrationForm.email, {'attr': {'class': 'input-register', 'placeholder': ' '}}) }}
+				{{ form_label(registrationForm.email, 'Email', {'label_attr': {'class': 'label-register'}}) }}
+			</div>
 
-		{{ form_errors(registrationForm) }}
+			<div class="form-group">
+				{{ form_widget(registrationForm.number, {'attr': {'class': 'input-register', 'placeholder': ' '}}) }}
+				{{ form_label(registrationForm.number, 'Numéro', {'label_attr': {'class': 'label-register'}}) }}
+			</div>
 
-		{{ form_start(registrationForm, { 'attr': {'class': 'form-signin d-flex justify-content-center align-items-center flex-column'} }) }}
+			<div class="form-group">
+				{{ form_widget(registrationForm.username, {'attr': {'class': 'input-register', 'placeholder': ' '}}) }}
+				{{ form_label(registrationForm.username, 'Nom d\'utilisateur', {'label_attr': {'class': 'label-register'}}) }}
+    </div>
 
-		<div class="form-group d-flex justify-content-center align-items-center mx-5 my-3 flex-column text-center">
-			{{ form_row(registrationForm.email, {'attr': {'class': 'form-control mx-5 text-center'}}) }}
+    <div class="form-group">
+        {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'input-register', 'placeholder': ' '}}) }}
+        {{ form_label(registrationForm.plainPassword, 'Mot de passe', {'label_attr': {'class': 'label-register'}}) }}
+    </div>
+
+    <div class="form-group agree-terms">
+        {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'checkbox-register'}}) }}
+        {{ form_label(registrationForm.agreeTerms, 'J\'accepte les conditions', {'label_attr': {'class': 'label-agree-terms'}}) }}
+			</div>
+
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+			<button type="submit" class="button-register">S'inscrire</button>
+
+			{{ form_end(registrationForm) }}
 		</div>
+	</main>
 
-		<div class="form-group d-flex justify-content-center align-items-center mx-5 my-3 flex-column text-center">
-			{{ form_row(registrationForm.number, {'attr': {'class': 'form-control mx-5 text-center'}}) }}
-		</div>
+	<footer>&copy; Copyright 2025 - Astra</footer>
 
-		<div class="form-group d-flex justify-content-center align-items-center mx-5 my-3 flex-column text-center">
-			{{form_row(registrationForm.username, {
-            label: 'Username', 'attr' : {'class': 'form-control mx-5 text-center'}
-        } )}}
-		</div>
-
-		<div
-			class="form-group d-flex justify-content-center align-items-center mx-5 my-3 flex-column text-center">
-			{{form_row(registrationForm.number, {
-			label: 'Number', 'attr' : {'class': 'form-control mx-5 text-center'}
-		} )}}
-		</div>
-
-		<div class="form-group d-flex justify-content-center align-items-center mx-5 my-3 flex-column text-center">
-			{{ form_row(registrationForm.plainPassword, {
-            label: 'Password', 'attr' : {'class': 'form-control mx-5 text-center'}
-        }) }}
-		</div>
-
-		<div class="form-group form-check d-flex justify-content-center align-items-center mx-5 my-3">
-			{{ form_row(registrationForm.agreeTerms) }}
-		</div>
-		<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-		<button type="submit" class="btn btn-outline-info">Register</button>
-		{{ form_end(registrationForm) }}
-	{% endblock %}
+{% endblock %}

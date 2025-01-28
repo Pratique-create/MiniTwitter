@@ -5,22 +5,26 @@
 
 {% block body %}
 	<header>
-	<div class="header-edit-form">
-		<nav class="nav-bar-edit nav-bar-svg">			
-				<img src="{{ asset('images/star.svg') }}" class="logo logo-edit" alt="Logo Astra" style="max-width: 60px; max-height: 60px;">
-				<div>
-					<a href="{{ path('app_logout') }}" class="btn">
-						<img src="{{ asset('images/box-arrow-right.svg') }}" class="logo" alt="logout icon" style="max-width: 30px; max-height: 30px;">
-					</a>
-				</div>
-			</nav>
-		</div>
+		<nav class="nav-bar">
+			{% if app.user %}
+
+				<img src="{{ asset('images/star_white.svg') }}" class="logo-nav" alt="Logo Astra">
+
+				<a href="{{ path('app_logout') }}" class="btn">Log out</a>
+
+				{% else %}
+			{% endif %}
+		</nav>
 	</header>
-		<h1>Modifier votre profil</h1>
+	<main>
+		<h1>Edit User</h1>
 
 		{{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
 
 		<a href="{{ path('app_user_index', {'id': app.user.id}) }}">back to profile</a>
 
 		{{ include('user/_delete_form.html.twig') }}
-	{% endblock %}
+	</main>
+	<footer>&copy; Copyright 2025 - Astra</footer>
+
+{% endblock %}

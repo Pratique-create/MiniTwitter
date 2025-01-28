@@ -1,11 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Posts{% endblock %}
+{% block title %}New Posts
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Posts</h1>
+	<header>
+		<nav class="nav-bar">
+			{% if app.user %}
+				<a href="{{ path('app_user_index', {'id': app.user.id}) }}" class="btn">Profile</a>
+				<img src="{{ asset('images/star_white.svg') }}" class="logo-nav" alt="Logo Astra">
 
-    {{ include('posts/_form.html.twig') }}
+				<a href="{{ path('app_logout') }}" class="btn">Log out</a>
 
-    <a href="{{ path('app_posts_index') }}">back to list</a>
+				{% else %}
+			{% endif %}
+		</nav>
+	</header>
+	<main>
+		<h1>Create new Posts</h1>
+
+		{{ include('posts/_form.html.twig') }}
+
+		<a href="{{ path('app_posts_index') }}">back to list</a>
+	</main>
 {% endblock %}

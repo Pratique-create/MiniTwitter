@@ -42,6 +42,7 @@ final class LikesController extends AbstractController
         ]);
     }
 
+    
     #[Route('/{id}', name: 'app_likes_show', methods: ['GET'])]
     public function show(Likes $like): Response
     {

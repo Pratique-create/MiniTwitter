@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Posts index
+{% block title %}Astra - Feed
 {% endblock %}
 
 {% block body %}
 	<header>
 		<nav class="nav-bar">
 			{% if app.user %}
-				<a
-					href="{{ path('app_user_index', {'id': app.user.id}) }}">
-					{# {{ dump(app.user.profilePicture) }} #}
-					<img src="{{ asset('config/public/images/' ~ app.user.profilePicture) }}" class="pp-nav" alt="Photo de profil" style="max-width: 50px; max-height: 50px;">
+				<a href="{{ path('app_user_index', {'id': app.user.id}) }}">
+					<img src="{{ asset(app.user.getProfilePicture()) }}" class="pp-nav" alt="Photo de profil" style="max-width: 50px; max-height: 50px;">
 				</a>
+
+
 				<img src="{{ asset('images/star_white.svg') }}" class="logo-nav" alt="Logo Astra">
 				<a href="{{ path('app_logout') }}" class="btn">Log out</a>
 
@@ -26,7 +26,7 @@
 		{% for post in posts %}
 			<div class="tweet">
 				<div class="userIDTweet">
-					<img class="imgProfileTweet" src="{{ asset('config/public/images' ~ app.user.profilePicture) }}" alt="Photo de profil" style="max-width: 50px; max-height: 50px;">
+					<img class="imgProfileTweet" src="{{asset('images/' ~ app.user.profilePicture) }}" alt="Photo de profil" style="max-width: 50px; max-height: 50px;">
 					<h3>{{ post.user.username }}</h3>
 				</div>
 				<div class="userContentTweet">

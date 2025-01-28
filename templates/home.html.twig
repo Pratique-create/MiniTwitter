@@ -7,23 +7,22 @@
 	<body
 		class="background">
 		{# <header>
-															<nav class="nav-bar">
-																{% if app.user %}
-																	<a href="{{ path('app_user_index', {'id': app.user.id}) }}" class="btn">Profile</a>
-																	<img src="{{ asset('images/star.svg') }}" class="logo-nav" alt="Logo Astra">
-												
-																	<a href="{{ path('app_posts_index') }}" class="btn">Feed</a>
-																	<a href="{{ path('app_logout') }}" class="btn">Log out</a>
-												
-																	{% else %}
-																{% endif %}
-															</nav>
-														</header> #}
+																											<nav class="nav-bar">
+																												{% if app.user %}
+																													<a href="{{ path('app_user_index', {'id': app.user.id}) }}" class="btn">Profile</a>
+																													<img src="{{ asset('images/star.svg') }}" class="logo-nav" alt="Logo Astra">
+																								
+																													<a href="{{ path('app_posts_index') }}" class="btn">Feed</a>
+																													<a href="{{ path('app_logout') }}" class="btn">Log out</a>
+																								
+																													{% else %}
+																												{% endif %}
+																											</nav>
+																										</header> #}
 
 		<main>
 			<div class="box-logo">
-				<img src="{{ asset('images/star_white.svg') }}" class="logo" alt="Logo Astra">
-			</div>
+				<img src="{{ asset('images/star_white.svg') }}" class="logo" alt="Logo Astra"></div>
 			<h1>Bienvenue !</h1>
 
 			<div class="buttons">
@@ -31,7 +30,7 @@
 				<a href="{{ path('app_login') }}" class="btn-login">Se connecter</a>
 			</div>
 		</main>
-
 		<footer>&copy; Copyright 2025 - Astra</footer>
+
 	</body>
 {% endblock %}

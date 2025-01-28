@@ -5,9 +5,7 @@ namespace App\Entity;
 use App\Repository\PostsRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
-
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-
 #[ORM\Entity(repositoryClass: PostsRepository::class)]
 class Posts
 {
@@ -29,6 +27,8 @@ class Posts
     public function __construct(){
         $this->createdAt = new DateTimeImmutable();
     }
+
+    
 
     public function getId(): ?int
     {

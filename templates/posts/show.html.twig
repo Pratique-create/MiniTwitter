@@ -1,14 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Posts{% endblock %}
+{% block title %}Posts
+{% endblock %}
 
 {% block body %}
-    <h1>Posts</h1>
+	<h1>Posts</h1>
 
     <div>
         <div>
             <img>
-            <p> {{ post.UserId.username }} </p>
+            <p> {{ post.user.username }} </p>
         </div>
         <div>
             <p> {{ post.content }} </p>
@@ -16,18 +17,20 @@
         <div>
         <p> {{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }} </p>
         <div>
-            <button> RT </button>
-            <p> RT si t'es triste </p>
+            <a href="{{ path('app_retweet', {'id': post.id}) }}" class="btn btn-primary">Retweeter</a>
+            <p> {{ retweetCount[post.id] }} </p>
         </div>
         <div>
-            <button> Like </button>
-            <p> Like si tu veux avoir astra yao </p>
+            <a href="{{ path('app_like', {'id': post.id}) }}" class="btn btn-primary">Like</a>
+            <p> {{ likeCount[post.id]}} </p>
         </div>
     <div>
 
-    <a href="{{ path('app_posts_index') }}">back to list</a>
+				<a href="{{ path('app_posts_index') }}">back to list</a>
 
-    <a href="{{ path('app_posts_edit', {'id': post.id}) }}">edit</a>
+				<a href="{{ path('app_posts_edit', {'id': post.id}) }}">edit</a>
 
-    {{ include('posts/_delete_form.html.twig') }}
-{% endblock %}
+                {# <a href="{{path('app_user_index', {'id': user.id}) }}">Profile</a> #}
+
+				{{ include('posts/_delete_form.html.twig') }}
+			{% endblock %}

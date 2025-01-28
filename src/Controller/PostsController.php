@@ -44,7 +44,7 @@ final class PostsController extends AbstractController
     }
 
     #[Route('/new', name: 'app_posts_new', methods: ['GET', 'POST'])]
-    public function new(Posts $post, Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_register');

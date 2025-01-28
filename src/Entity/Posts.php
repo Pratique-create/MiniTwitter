@@ -5,9 +5,7 @@ namespace App\Entity;
 use App\Repository\PostsRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
-
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-
 #[ORM\Entity(repositoryClass: PostsRepository::class)]
 class Posts
 {
@@ -21,7 +19,7 @@ class Posts
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $user_id = null;
+    private ?User $user = null;
 
     #[ORM\Column]
     private ?DateTimeImmutable $createdAt = null;
@@ -29,6 +27,8 @@ class Posts
     public function __construct(){
         $this->createdAt = new DateTimeImmutable();
     }
+
+    
 
     public function getId(): ?int
     {
@@ -47,14 +47,14 @@ class Posts
         return $this;
     }
 
-    public function getUserId(): ?User
+    public function getUser(): ?User
     {
-        return $this->user_id;
+        return $this->user;
     }
 
-    public function setUserId(?User $user_id): static
+    public function setUser(?User $user): static
     {
-        $this->user_id = $user_id;
+        $this->user = $user;
 
         return $this;
     }

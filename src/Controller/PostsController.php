@@ -19,7 +19,7 @@ final class PostsController extends AbstractController
 {
     #[Route(name: 'app_posts_index', methods: ['GET'])]
     public function index(PostsRepository $postsRepository, UserRepository $userRepository): Response
-{
+    {
         return $this->render('posts/index.html.twig', [
             'posts' => $postsRepository->findAll(),
             'users' => $userRepository ->findAll(),
@@ -32,8 +32,13 @@ final class PostsController extends AbstractController
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_register');
         }
+        
         $post = new Posts();
-        $post -> setUserId($this->getUser());
+        $user = $this->getUser();
+
+        if ($user) {
+            $post->setUser($user);
+        }
         $form = $this->createForm(PostsType::class, $post);
         $form->handleRequest($request);
 

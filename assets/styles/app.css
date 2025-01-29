@@ -89,6 +89,14 @@ a {
     text-decoration: none;
 }
 
+/*===== logo logout in edit.html.twig =====*/
+.bi-box-arrow-right:hover {
+    height: 28px;
+    width: 28px;
+    fill: #ff0000;
+}
+/* ======================================= */
+
 .btn-register, .btn-login {
     width: 90%;
     max-width: 100%;

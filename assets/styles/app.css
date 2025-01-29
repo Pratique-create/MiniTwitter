@@ -141,6 +141,13 @@ a {
     margin-top: 15px;
 }
 
+.container-back {
+    position: absolute;
+    left: 20px;
+    top: 9%;
+    z-index: 2;
+}
+
 /*  */
 
 .btn-register, .btn-login {

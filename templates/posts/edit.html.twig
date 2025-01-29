@@ -7,7 +7,9 @@
 	<header>
 		<nav class="nav-bar">
 			{% if app.user %}
-				<a href="{{ path('app_user_index', {'id': app.user.id}) }}" class="btn">Profile</a>
+				<a href="{{ path('app_user_index', {'id': app.user.id}) }}">
+					<img src="{{ asset(app.user.getProfilePicture()) }}" class="pp-nav" alt="Photo de profil" style="max-width: 50px; max-height: 50px;">
+				</a>
 				<img src="{{ asset('images/star_white.svg') }}" class="logo-nav" alt="Logo Astra">
 
 				<a href="{{ path('app_logout') }}" class="btn">Log out</a>
@@ -25,4 +27,6 @@
 
 		{{ include('posts/_delete_form.html.twig') }}
 	</main>
+	<footer>&copy; Copyright 2025 - Astra</footer>
+
 {% endblock %}

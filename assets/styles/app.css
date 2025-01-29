@@ -59,7 +59,7 @@ h1 {
     width: 100%;
 }
 .logo-nav {
-    width: 50px;
+    width: 55px;
 }
 
 .nav-bar {
@@ -72,7 +72,21 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 10px 20px;
+}
+
+.btn-logout {
+    width: 30px;
+}
+
+.logout-svg {
+    fill : #C9D1D9;
+    transform: rotateY(3.142rad);
+
+}
+
+.btn-logout:hover .logout-svg {
+    fill: aliceblue;
 }
 
 .buttons {
@@ -120,6 +134,8 @@ a {
     background-color: #0D1117;
     color: white;
 }
+
+
 
 footer {
     text-align: center;
@@ -312,7 +328,126 @@ input:focus {
     border: 1px solid #1F6FEB;
 }
 
+.login-svg {
+    width: 25px;
+    fill: #C9D1D9;
+    transition: fill 0.3s ease;
+}
 
+.button-login:hover .login-svg {
+    fill: #1F6FEB;
+}
+
+.signin-svg {
+    width: 23px;
+    fill: #1F6FEB;
+    transition: fill 0.3s ease;
+}
+
+.button-register:hover .signin-svg {
+    fill: #C9D1D9;
+}
+
+.tweet-page {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+    overflow-y: auto;
+    height: calc(100vh - 150px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tweet {
+    border: 1px solid #30363D;
+    padding: 15px;
+    width: 100%;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.userIDTweet {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.userIDTweet h3 {
+    margin: 0;
+    line-height: 1.2;
+}
+
+.dateTweet {
+    color: #30363D;
+    margin-left: auto;
+    line-height: 1;
+
+}
+
+.imgProfileTweet {
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.userContentTweet p {
+    font-size: 1rem;
+}
+
+
+
+.tweetContent {
+
+}
+
+/* .interactions {
+
+} */
+
+.retweet-svg {
+    width: 25px;
+    fill: #C9D1D9;
+    stroke-width: 1.5;
+}
+
+.retweet-svg:hover {
+    fill: #1F6FEB;
+}
+
+.like-svg {
+    width: 26px;
+    stroke: #C9D1D9;
+    stroke-width: 1.5;
+}
+
+.like-svg:hover {
+    stroke: #991FEB;
+}
+
+.comments-svg {
+    width: 23px;
+    fill: #C9D1D9;
+    stroke-width: 1.5;
+}
+
+.comments-svg:hover {
+    fill: #1F7A8C;
+}
+
+.see-svg {
+    width: 25px;
+    stroke: #C9D1D9;
+    stroke-width: 1.5;
+}
+
+.see-svg:hover {
+    stroke: #1F7A8C;
+}
+
+.footer {
+    background-color: #0D1117;
+}
 
 @media (min-width: 769px) and (max-width: 1279px) {
     h1 {
@@ -328,6 +463,10 @@ input:focus {
     .logo-register, .logo-login {
         width: 130px;
         margin: 0;
+    }
+
+    .tweet {
+        width: 60%;
     }
 }
 
@@ -346,6 +485,8 @@ input:focus {
         width: 500px;
         max-width: 600px;
         height: 60px;
+        padding: 25px;
+
 
     }
 
@@ -357,5 +498,9 @@ input:focus {
     .logo-register, .logo-login {
         width: 130px;
         margin: 0;
+    }
+
+    .tweet {
+        width: 70%;
     }
 }

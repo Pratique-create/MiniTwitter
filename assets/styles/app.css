@@ -75,6 +75,10 @@ h1 {
     padding: 10px 20px;
 }
 
+.pp-nav {
+    width: 45px;
+}
+
 .btn-logout {
     width: 30px;
 }
@@ -350,7 +354,6 @@ input:focus {
 
 .tweet-page {
     width: 100%;
-    max-width: 1200px;
     margin: 0 auto;
     padding: 0;
     overflow-y: auto;
@@ -358,11 +361,12 @@ input:focus {
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* position: relative; */
 }
 
 .tweet {
     border: 1px solid #30363D;
-    padding: 15px;
+    padding: 18px;
     width: 100%;
     box-shadow: 0 1px 2px rgba(0,0,0,0.05);
     transition: box-shadow 0.3s ease-in-out;
@@ -371,7 +375,7 @@ input:focus {
 .userIDTweet {
     display: flex;
     align-items: center;
-    gap: 10px;
+    margin-bottom: 10px;
 }
 
 .userIDTweet h3 {
@@ -382,7 +386,7 @@ input:focus {
 .dateTweet {
     color: #30363D;
     margin-left: auto;
-    line-height: 1;
+    padding-top: 18px;
 
 }
 
@@ -391,19 +395,42 @@ input:focus {
     margin-right: 10px;
 }
 
+
+.userContentTweet {
+    margin-left: 60px;
+    width: calc(100% - 60px);
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
 .userContentTweet p {
     font-size: 1rem;
 }
 
 
-
 .tweetContent {
-
+    text-align: left;
+    font-size: 1rem;
+    line-height: 1.5;
 }
 
-/* .interactions {
+.interactions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
 
-} */
+.interactions svg {
+    margin-left: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.interaction-count {
+    font-size: 0.9em;
+    color: #30363D;
+    margin: 0 5px;
+}
 
 .retweet-svg {
     width: 25px;
@@ -445,6 +472,25 @@ input:focus {
     stroke: #1F7A8C;
 }
 
+.createPost-svg {
+    width: 35px;
+    stroke: #C9D1D9;
+    stroke-width: 2;
+
+}
+
+.button-createPost {
+    background-color: #1F6FEB;
+    border-radius: 50%;
+    padding: 8px;
+    position: absolute;
+    bottom: 75px;
+    right: 15px;
+    z-index: 10;
+    margin-left: 10px;
+
+}
+
 .footer {
     background-color: #0D1117;
 }
@@ -465,9 +511,7 @@ input:focus {
         margin: 0;
     }
 
-    .tweet {
-        width: 60%;
-    }
+
 }
 
 @media (min-width: 1280px) {
@@ -503,4 +547,9 @@ input:focus {
     .tweet {
         width: 70%;
     }
+
+    .userContentTweet {
+    width: calc(100% - 80px);
+    }
+
 }

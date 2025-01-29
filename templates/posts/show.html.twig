@@ -15,16 +15,35 @@
             <p> {{ post.content }} </p>
         </div>
         <div>
-        <p> {{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }} </p>
-        <div>
-            <a href="{{ path('app_retweet', {'id': post.id}) }}" class="btn btn-primary">Retweeter</a>
-            <p> {{ retweetCount[post.id] }} </p>
+        <p> {{ post.createdAt|date('Y-m-d H:i:s')}} </p>
+            <div>
+                <a href="{{ path('app_retweet', {'id': post.id}) }}" class="btn btn-primary">Retweeter</a>
+                <p> {{ retweetCount }} </p>
+            </div>
+            <div>
+                <a href="{{ path('app_like', {'id': post.id}) }}" class="btn btn-primary">Like</a>
+                <p> {{ likeCount }} </p>
+            </div>
         </div>
-        <div>
-            <a href="{{ path('app_like', {'id': post.id}) }}" class="btn btn-primary">Like</a>
-            <p> {{ likeCount[post.id]}} </p>
-        </div>
+    </div>
+
+    {% for comment in comments %}
     <div>
+        <img src="{{ asset(content.user.profilePicture) }}" alt="Photo de profil" style="max-width: 75px; max-height: 75px; border-radius: 50%;">
+        <p>{{ content.user.username }}</p>
+    </div>
+    <div>
+        <p> {{ comment.content }}
+    </div>
+    <div>
+        <p> {{ post.createdAt|date('Y-m-d H:i:s')}} </p>
+    </div>
+
+    {% else %}
+
+    <p> Pas de commentaires trouvées </p>
+
+    {% endfor %}
 
 				<a href="{{ path('app_posts_index') }}">back to list</a>
 

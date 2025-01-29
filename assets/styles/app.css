@@ -72,6 +72,7 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-sizing: border-box;
     padding: 10px 20px;
 }
 
@@ -495,6 +496,123 @@ input:focus {
     background-color: #0D1117;
 }
 
+
+.settings, .hover-animation {
+    width: 40px;
+    stroke: #C9D1D9;
+    stroke-width: 1.5;
+}
+
+
+.edit-button-svg {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    position: relative;
+
+}
+
+.btn-edit {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+}
+
+
+.static {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.2s ease;
+}
+
+
+.hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    pointer-events: none;
+}
+
+
+.btn-edit:hover .static {
+    display: none;
+}
+
+.btn-edit:hover .hover {
+    display: block;
+} 
+
+.pen-svg {
+    width: 23px;
+    stroke: #C9D1D9;
+    stroke-width: 1.5;
+}
+
+.pen-svg:hover {
+    stroke: #1F7A8C;
+}
+
+.profile-page {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    overflow-y: auto;
+    height: calc(100vh - 150px);
+
+}
+
+.infoUser {
+    border: 1px solid #30363D;
+    padding: 18px;
+    width: 100%;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.photo-profil {
+    width: 60px;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 
+.userProfile {
+
+} */
+
+.interactionsProfile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-svg {
+    margin: 50px 40px;
+    margin-bottom: 20px;
+}
+
+
+.tweetProfile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 @media (min-width: 769px) and (max-width: 1279px) {
     h1 {
         font-size: 2.5rem;
@@ -505,10 +623,13 @@ input:focus {
 
     }
     
-
     .logo-register, .logo-login {
         width: 130px;
         margin: 0;
+    }
+
+    .photo-profil {
+        width: 100px;
     }
 
 
@@ -544,12 +665,16 @@ input:focus {
         margin: 0;
     }
 
-    .tweet {
+    .tweet, .infoUser {
         width: 70%;
     }
 
     .userContentTweet {
     width: calc(100% - 80px);
+    }
+
+    .photo-profil {
+        width: 150px;
     }
 
 }

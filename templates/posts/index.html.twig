@@ -23,23 +23,30 @@
 		class="tweet-page">
 		{# <h1>Tweets</h1> #}
 
-		{% for post in posts %}
-			<div class="tweet">
-				<div class="userIDTweet">
-					<img class="imgProfileTweet" src="{{asset(app.user.getProfilePicture()) }}" alt="Photo de profil" style="max-width: 50px; max-height: 50px;">
-					<h3>{{ post.user.username }}</h3>
-				</div>
-				<div class="userContentTweet">
-					<p>{{ post.content|slice(0, 250) }}</p>
-				</div>
-				<div>
-					<p>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</p>
-
-					<div>
-						<a href="{{ path('app_posts_show', {'id': post.id}) }}">show</a>
-						<a href="{{ path('app_posts_edit', {'id': post.id}) }}">edit</a>
-					</div>
-				</div>
+        {% for post in posts %}
+            <div>
+                <div>
+                    <img src="{{ asset(post.user.profilePicture) }}" alt="Photo de profil" style="max-width: 75px; max-height: 75px; border-radius: 50%;">
+                    <p>{{ post.user.username }}</p>
+                </div>
+                <div>
+                <p>{{ post.content|slice(0, 100) }}</p>
+                </div>
+                <div>
+                <p>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</p>
+                <div>
+                    <a href="{{ path('app_retweet', {'id': post.id}) }}" class="btn btn-primary">Retweeter</a>
+                    <p> {{ retweetCount[post.id] }} </p>
+                </div>
+                <div>
+                    <a href="{{ path('app_like', {'id': post.id}) }}" class="btn btn-primary">Like</a>
+                    <p> {{ likeCount[post.id]}} </p>
+                </div>
+                <div>
+                    <a href="{{ path('app_posts_show', {'id': post.id}) }}">show</a>
+                    <a href="{{ path('app_posts_edit', {'id': post.id}) }}">edit</a>
+                </div>
+            </div>
 
 			{% else %}
 				<p>

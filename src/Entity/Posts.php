@@ -52,9 +52,9 @@ class Posts
         return $this->user;
     }
 
-    public function setUser(?User $user): static
+    public function setUser(?User $user_id): static
     {
-        $this->user = $user;
+        $this->user = $user_id;
 
         return $this;
     }

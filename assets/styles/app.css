@@ -428,7 +428,7 @@ input:focus {
 }
 
 .interaction-count {
-    font-size: 0.9em;
+    font-size: 1.1rem;
     color: #30363D;
     margin: 0 5px;
 }
@@ -492,6 +492,12 @@ input:focus {
 
 }
 
+.button-like, .button-retweet {
+    border: none;
+    background-color: transparent;
+}
+
+
 .footer {
     background-color: #0D1117;
 }
@@ -517,7 +523,6 @@ input:focus {
 
 .btn-edit {
     position: relative;
-    display: inline-block;
     width: 40px;
     height: 40px;
 }

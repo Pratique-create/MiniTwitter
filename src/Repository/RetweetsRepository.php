@@ -16,6 +16,16 @@ class RetweetsRepository extends ServiceEntityRepository
         parent::__construct($registry, Retweets::class);
     }
 
+    public function countRt($postId): int
+    {
+        $qb = $this->createQueryBuilder('r')
+            ->select('COUNT(r.id)')
+            ->where('r.post = :postId')
+            ->setParameter('postId', $postId);
+
+        return (int) $qb->getQuery()->getSingleScalarResult();
+    }
+
     //    /**
     //     * @return Retweets[] Returns an array of Retweets objects
     //     */

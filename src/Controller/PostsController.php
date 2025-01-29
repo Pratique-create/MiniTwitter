@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Posts;
 use App\Form\PostsType;
+use App\Repository\LikesRepository;
 use App\Repository\PostsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,34 +14,48 @@ use Symfony\Component\Routing\Attribute\Route;
 
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use App\Repository\RetweetsRepository;
+use SebastianBergmann\Diff\Line;
 
 #[Route('/posts')]
 final class PostsController extends AbstractController
 {
     #[Route(name: 'app_posts_index', methods: ['GET'])]
-    public function index(PostsRepository $postsRepository, UserRepository $userRepository): Response
+    public function index(PostsRepository $postsRepository, UserRepository $userRepository, RetweetsRepository $retweetRepository, LikesRepository $likeRepository): Response
     {
+
+    $posts = $postsRepository->findAll();
+
+    $retweetCounts = [];
+    foreach ($posts as $post) {
+        $retweetCounts[$post->getId()] = $retweetRepository->countRt($post->getId());
+    }
+
+    $likeCounts = [];
+    foreach ($posts as $post) {
+        $likeCounts[$post->getId()] = $likeRepository->countLike($post->getId());
+    }
         return $this->render('posts/index.html.twig', [
             'posts' => $postsRepository->findAll(),
             'users' => $userRepository ->findAll(),
+            'retweetCount' => $retweetCounts,
+            'likeCount' => $likeCounts,
         ]);
-    }
+}
 
     #[Route('/new', name: 'app_posts_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, SessionInterface $session): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_register');
         }
-        
-        $post = new Posts();
-        $user = $this->getUser();
 
-        if ($user) {
-            $post->setUser($user);
-        }
+        $post = new Posts();
+        $post -> setUser($this->getUser());
         $form = $this->createForm(PostsType::class, $post);
         $form->handleRequest($request);
+
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($post);

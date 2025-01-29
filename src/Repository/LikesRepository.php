@@ -16,6 +16,16 @@ class LikesRepository extends ServiceEntityRepository
         parent::__construct($registry, Likes::class);
     }
 
+    public function countLike($postId): int
+    {
+        $qb = $this->createQueryBuilder('r')
+            ->select('COUNT(r.id)')
+            ->where('r.post = :postId')
+            ->setParameter('postId', $postId);
+
+        return (int) $qb->getQuery()->getSingleScalarResult();
+    }
+
     //    /**
     //     * @return Likes[] Returns an array of Likes objects
     //     */

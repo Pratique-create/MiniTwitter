@@ -51,7 +51,7 @@ final class PostsController extends AbstractController
         }
 
         $post = new Posts();
-        $post -> setUser($this->getUser());
+        $post->setUser($this->getUser());
         $form = $this->createForm(PostsType::class, $post);
         $form->handleRequest($request);
 

@@ -38,8 +38,11 @@
         <p> {{ comment.content }}
     </div>
     <div>
-        <p> {{ post.createdAt|date('Y-m-d H:i:s')}} </p>
+        <p> {{ comment.createdAt|date('Y-m-d H:i:s')}} </p>
     </div>
+    {% if app.user.id == comment.user.id %}
+    {{ include('comment/_delete_form.html.twig') }}
+    {% endif %}
 
     {% else %}
 
@@ -51,5 +54,7 @@
 
                 {# <a href="{{path('app_user_index', {'id': user.id}) }}">Profile</a> #}
 
-				{{ include('posts/_delete_form.html.twig') }}
+                {% if app.user.id == post.user.id %}
+                {{ include('posts/_delete_form.html.twig') }}
+                {% endif %}
 			{% endblock %}

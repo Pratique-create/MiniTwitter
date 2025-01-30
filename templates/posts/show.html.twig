@@ -8,7 +8,7 @@
 
     <div>
         <div>
-            <img>
+            <img src="{{ asset(post.user.profilePicture) }}" alt="Photo de profil" style="max-width: 75px; max-height: 75px; border-radius: 50%;">
             <p> {{ post.user.username }} </p>
         </div>
         <div>
@@ -27,10 +27,12 @@
         </div>
     </div>
 
+        <a href="{{ path('app_comment_new', { 'id': post.id }) }}">Ajoutez un commentaire</a>
+
     {% for comment in comments %}
     <div>
-        <img src="{{ asset(content.user.profilePicture) }}" alt="Photo de profil" style="max-width: 75px; max-height: 75px; border-radius: 50%;">
-        <p>{{ content.user.username }}</p>
+        <img src="{{ asset(comment.user.profilePicture) }}" alt="Photo de profil" style="max-width: 75px; max-height: 75px; border-radius: 50%;">
+        <p>{{ comment.user.username }}</p>
     </div>
     <div>
         <p> {{ comment.content }}
@@ -46,8 +48,6 @@
     {% endfor %}
 
 				<a href="{{ path('app_posts_index') }}">back to list</a>
-
-				<a href="{{ path('app_posts_edit', {'id': post.id}) }}">edit</a>
 
                 {# <a href="{{path('app_user_index', {'id': user.id}) }}">Profile</a> #}
 

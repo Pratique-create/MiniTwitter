@@ -20,7 +20,7 @@
                 <td>{{ retweet.createdAt ? retweet.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     <a href="{{ path('app_retweets_show', {'id': retweet.id}) }}">show</a>
-                    <a href="{{ path('app_retweets_edit', {'id': retweet.id}) }}">edit</a>
+                    
                 </td>
             </tr>
         {% else %}

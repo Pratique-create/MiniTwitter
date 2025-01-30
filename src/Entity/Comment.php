@@ -28,9 +28,8 @@ class Comment
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
 
-    private ?\DateTimeImmutable $createdAt = null;
     public function __construct(){
-        $this->createdAt = new DateTimeImmutable();
+        $this->created_at = new DateTimeImmutable();
     }
 
     public function getId(): ?int

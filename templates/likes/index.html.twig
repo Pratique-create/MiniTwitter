@@ -20,7 +20,7 @@
                 <td>{{ like.createdAt ? like.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     <a href="{{ path('app_likes_show', {'id': like.id}) }}">show</a>
-                    <a href="{{ path('app_likes_edit', {'id': like.id}) }}">edit</a>
+                    
                 </td>
             </tr>
         {% else %}

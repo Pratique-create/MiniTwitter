@@ -22,26 +22,26 @@ final class PostsController extends AbstractController
 {
     #[Route(name: 'app_posts_index', methods: ['GET'])]
     public function index(PostsRepository $postsRepository, UserRepository $userRepository, RetweetsRepository $retweetRepository, LikesRepository $likeRepository): Response
-{
+    {
 
     $posts = $postsRepository->findAll();
 
     $retweetCounts = [];
     foreach ($posts as $post) {
-    $retweetCounts[$post->getId()] = $retweetRepository->countRt($post->getId());
-}
+        $retweetCounts[$post->getId()] = $retweetRepository->countRt($post->getId());
+    }
 
     $likeCounts = [];
     foreach ($posts as $post) {
-    $likeCounts[$post->getId()] = $likeRepository->countLike($post->getId());
-}
+        $likeCounts[$post->getId()] = $likeRepository->countLike($post->getId());
+    }
         return $this->render('posts/index.html.twig', [
             'posts' => $postsRepository->findAll(),
             'users' => $userRepository ->findAll(),
             'retweetCount' => $retweetCounts,
             'likeCount' => $likeCounts,
         ]);
-    }
+}
 
     #[Route('/new', name: 'app_posts_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response

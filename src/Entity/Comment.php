@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\PostsRepository;
-use DateTimeImmutable;
+use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
-#[ORM\Entity(repositoryClass: PostsRepository::class)]
-class Posts
+use DateTimeImmutable;
+
+#[ORM\Entity(repositoryClass: CommentRepository::class)]
+class Comment
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -21,14 +21,16 @@ class Posts
     #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
     private ?User $user = null;
 
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
+    private ?Posts $post = null;
+
     #[ORM\Column]
-    private ?DateTimeImmutable $createdAt = null;
+    private ?\DateTimeImmutable $created_at = null;
 
     public function __construct(){
-        $this->createdAt = new DateTimeImmutable();
+        $this->created_at = new DateTimeImmutable();
     }
-
-    
 
     public function getId(): ?int
     {
@@ -52,21 +54,33 @@ class Posts
         return $this->user;
     }
 
-    public function setUser(?User $user_id): static
+    public function setUser(?User $user): static
     {
-        $this->user = $user_id;
+        $this->user = $user;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?DateTimeImmutable
+    public function getPost(): ?Posts
     {
-        return $this->createdAt;
+        return $this->post;
     }
 
-    public function setCreatedAt(DateTimeImmutable $createdAt): static
+    public function setPost(?Posts $post): static
     {
-        $this->createdAt = $createdAt;
+        $this->post = $post;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $created_at): static
+    {
+        $this->created_at = $created_at;
 
         return $this;
     }

@@ -1,26 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Retweets index{% endblock %}
+{% block title %}Comment index{% endblock %}
 
 {% block body %}
-    <h1>Retweets index</h1>
+    <h1>Comment index</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>CreatedAt</th>
+                <th>Content</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for retweet in retweets %}
+        {% for comment in comments %}
             <tr>
-                <td>{{ retweet.id }}</td>
-                <td>{{ retweet.createdAt ? retweet.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ comment.id }}</td>
+                <td>{{ comment.content }}</td>
                 <td>
-                    <a href="{{ path('app_retweets_show', {'id': retweet.id}) }}">show</a>
-                    
+                    <a href="{{ path('app_comment_show', {'id': comment.id}) }}">show</a>
+
                 </td>
             </tr>
         {% else %}
@@ -31,5 +31,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_retweets_new') }}">Create new</a>
+    <a href="{{ path('app_comment_new') }}">Create new</a>
 {% endblock %}

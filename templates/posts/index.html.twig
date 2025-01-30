@@ -26,14 +26,12 @@
                 </div>
                 <div>
                     <a href="{{ path('app_posts_show', {'id': post.id}) }}">show</a>
-                    <a href="{{ path('app_posts_edit', {'id': post.id}) }}">edit</a>
+                    
                 </div>
             </div>
 
 		{% else %}
-			<p>
-				Pas de données trouvées
-			</p>
+			<p>Pas de données trouvées</p>
 		{% endfor %}
 
     <a href="{{ path('app_posts_new') }}">Create new</a>

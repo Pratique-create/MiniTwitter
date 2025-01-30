@@ -7,9 +7,29 @@
 	<header>
 		<nav class="nav-bar">
 			{% if app.user %}
-				<a href="{{ path('app_user_index', {'id': app.user.id}) }}">
+				{# dropdown workplace #}
+				<!-- Default dropend button -->
+					<div class="btn-group dropend"> <button type="button" class="btn btn-primary-black dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+						
+							<img src="{{ asset(app.user.getProfilePicture()) }}" class="pp-nav" alt="Photo de profil" style="max-width: 50px; max-height: 50px;">
+						
+					</button>
+					<ul
+						class="dropdown-menu">
+						<!-- Dropdown menu links -->
+						<li>
+							<a class="dropdown-item" href="{{ path('app_user_index', {'id': app.user.id}) }}">Profile</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="{{ path('app_user_edit', {'id': app.user.id}) }}">Editer profile</a>
+						</li>
+					</ul>
+				</div>
+
+				{# dropdown workplace #}
+				{# <a href="{{ path('app_user_index', {'id': app.user.id}) }}">
 					<img src="{{ asset(app.user.getProfilePicture()) }}" class="pp-nav" alt="Photo de profil" style="max-width: 50px; max-height: 50px;">
-				</a>
+				</a> #}
 
 
 				<img src="{{ asset('images/star_white.svg') }}" class="logo-nav" alt="Logo Astra">

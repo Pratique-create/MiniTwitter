@@ -109,9 +109,12 @@ a {
 }
 
 /*===== logo logout in edit.html.twig =====*/
-.bi-box-arrow-right:hover {
-    height: 28px;
-    width: 28px;
+.icon-logout-edit {
+    fill: #C9D1D9;
+    transform: rotateY(3.142rad);
+}
+
+.icon-logout-edit:hover {
     fill: #ff0000;
 }
 /* ======================================= */
@@ -167,6 +170,25 @@ a {
     z-index: 2;
 }
 
+.dropdown-toggle::after {
+    color: white !important; /* Makes the arrow white */
+    opacity: 0.8; /* Ensures good visibility */
+}
+
+
+.dropdown-menu {
+    background-color: #000000;
+    
+}
+
+li .dropdown-item{
+    color: #ffffff;
+}
+
+li .dropdown-item:hover {
+    background-color: #1F6FEB;
+    color: #ffffff;
+}
 /*  */
 
 .btn-register, .btn-login {

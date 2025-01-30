@@ -13,7 +13,10 @@
 				<img src="{{ asset('images/star_white.svg') }}" class="logo-nav" alt="Logo Astra">
 
 				<a href="{{ path('app_logout') }}" class="btn-logout">
-					<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="logout-svg"><path d="M7.707,8.707,5.414,11H17a1,1,0,0,1,0,2H5.414l2.293,2.293a1,1,0,1,1-1.414,1.414l-4-4a1,1,0,0,1,0-1.414l4-4A1,1,0,1,1,7.707,8.707ZM21,1H13a1,1,0,0,0,0,2h7V21H13a1,1,0,0,0,0,2h8a1,1,0,0,0,1-1V2A1,1,0,0,0,21,1Z"/></svg>
+					<?xml
+					version="1.0" encoding="utf-8"?>
+					<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+					<svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7.707,8.707,5.414,11H17a1,1,0,0,1,0,2H5.414l2.293,2.293a1,1,0,1,1-1.414,1.414l-4-4a1,1,0,0,1,0-1.414l4-4A1,1,0,1,1,7.707,8.707ZM21,1H13a1,1,0,0,0,0,2h7V21H13a1,1,0,0,0,0,2h8a1,1,0,0,0,1-1V2A1,1,0,0,0,21,1Z"/></svg>
 				</a>
 
 				{% else %}
@@ -23,35 +26,45 @@
 	<main>
 		<h1>Posts</h1>
 
-    <div>
-        <div>
-            <img>
-            <p> {{ post.user.username }} </p>
-        </div>
-        <div>
-            <p> {{ post.content }} </p>
-        </div>
-        <div>
-        <p> {{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }} </p>
-        <div>
-            <a href="{{ path('app_retweet', {'id': post.id}) }}" class="btn btn-primary">Retweeter</a>
-            <p> {{ retweetCount[post.id] }} </p>
-        </div>
-        <div>
-            <a href="{{ path('app_like', {'id': post.id}) }}" class="btn btn-primary">Like</a>
-            <p> {{ likeCount[post.id]}} </p>
-        </div>
-    <div>
+		<div>
+			<div>
+				<img>
+					<p>
+						{{ post.user.username }}
+					</p>
+				</div>
+				<div>
+					<p>
+						{{ post.content }}
+					</p>
+				</div>
+				<div>
+					<p>
+						{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}
+					</p>
+					<div>
+						<a href="{{ path('app_retweet', {'id': post.id}) }}" class="btn btn-primary">Retweeter</a>
+						<p>
+							{{ retweetCount[post.id] }}
+						</p>
+					</div>
+					<div>
+						<a href="{{ path('app_like', {'id': post.id}) }}" class="btn btn-primary">Like</a>
+						<p>
+							{{ likeCount[post.id]}}
+						</p>
+					</div>
+					<div>
 
-					<a href="{{ path('app_posts_index') }}">back to list</a>
+						<a href="{{ path('app_posts_index') }}">back to list</a>
 
-					<a href="{{ path('app_posts_edit', {'id': post.id}) }}">edit</a>
+						<a href="{{ path('app_posts_edit', {'id': post.id}) }}">edit</a>
 
-					{{ include('posts/_delete_form.html.twig') }}
+						{{ include('posts/_delete_form.html.twig') }}
+					</div>
 				</div>
 			</div>
-		</div>
-	</main>
-	<footer>&copy; Copyright 2025 - Astra</footer>
+		</main>
+		<footer>&copy; Copyright 2025 - Astra</footer>
 
-{% endblock %}
+	{% endblock %}

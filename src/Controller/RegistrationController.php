@@ -38,7 +38,7 @@ class RegistrationController extends AbstractController
             // do anything else you need here, like send an email
             $security->login($user);
 
-            return $this->redirectToRoute('app_post_index');
+            return $this->redirectToRoute('app_posts_index');
             // return $security->login($user, 'form_login', 'main');
         }
 

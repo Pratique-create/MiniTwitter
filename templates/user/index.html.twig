@@ -65,8 +65,15 @@
 				{% for post in posts %}
 					<div class="tweet">
 						<p>{{ post.content }}</p>
-						<span>Posted on
-							{{ post.createdAt|date('Y-m-d H:i') }}</span>
+						<span>Posted on {{ post.createdAt|date('Y-m-d H:i') }}</span>
+						<div>
+							<a href="{{ path('app_retweet', {'id': post.id}) }}" class="btn btn-primary">Retweeter</a>
+							<p> {{ retweetCount[post.id] }} </p>
+						</div>
+						<div>
+							<a href="{{ path('app_like', {'id': post.id}) }}" class="btn btn-primary">Like</a>
+							<p> {{ likeCount[post.id] }} </p>
+						</div>
 					</div>
 				{% else %}
 					<p>Aucun tweet trouvé.</p>

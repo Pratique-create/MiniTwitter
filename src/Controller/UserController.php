@@ -14,15 +14,26 @@ use Symfony\Component\Routing\Attribute\Route;
 use App\Controller\SecurityController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
+use App\Repository\RetweetsRepository;
+use App\Repository\LikesRepository;
+
 
 #[Route('/user')]
 final class UserController extends AbstractController
 {
 
     #[Route('/user/{id}', name: 'app_user_index', methods: ['GET'])]
-    public function index(int $id, UserRepository $userRepository, PostsRepository $postsRepository): Response
+    public function index(int $id, UserRepository $userRepository, PostsRepository $postsRepository, RetweetsRepository $retweetRepository, LikesRepository $likeRepository): Response
     {
         $user = $userRepository->find($id);
+
+        $posts = $postsRepository->findAll();
+        $retweetCounts = [];
+        $likeCounts = [];
+        foreach ($posts as $post) {
+        $retweetCounts[$post->getId()] = $retweetRepository->countRt($post->getId());
+        $likeCounts[$post->getId()] = $likeRepository->countLike($post->getId());
+    }
     
         if (!$user) {
             throw $this->createNotFoundException('User not found');
@@ -33,6 +44,8 @@ final class UserController extends AbstractController
         return $this->render('user/index.html.twig', [
             'user' =>$user,
             'posts' =>$posts,
+            'retweetCount' => $retweetCounts,
+            'likeCount' => $likeCounts,
         ]);
     }
 

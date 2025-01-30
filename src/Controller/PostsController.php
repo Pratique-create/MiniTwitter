@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Posts;
 use App\Form\PostsType;
+use App\Repository\CommentRepository;
 use App\Repository\LikesRepository;
 use App\Repository\PostsRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -27,14 +28,12 @@ final class PostsController extends AbstractController
     $posts = $postsRepository->findAll();
 
     $retweetCounts = [];
-    foreach ($posts as $post) {
-        $retweetCounts[$post->getId()] = $retweetRepository->countRt($post->getId());
-    }
-
     $likeCounts = [];
     foreach ($posts as $post) {
-        $likeCounts[$post->getId()] = $likeRepository->countLike($post->getId());
-    }
+    $retweetCounts[$post->getId()] = $retweetRepository->countRt($post->getId());
+    $likeCounts[$post->getId()] = $likeRepository->countLike($post->getId());
+}
+
         return $this->render('posts/index.html.twig', [
             'posts' => $postsRepository->findAll(),
             'users' => $userRepository ->findAll(),
@@ -51,7 +50,7 @@ final class PostsController extends AbstractController
         }
 
         $post = new Posts();
-        $post -> setUser($this->getUser());
+        $post->setUser($this->getUser());
         $form = $this->createForm(PostsType::class, $post);
         $form->handleRequest($request);
 
@@ -71,10 +70,18 @@ final class PostsController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_posts_show', methods: ['GET'])]
-    public function show(Posts $post): Response
+    public function show(Posts $post, PostsRepository $postsRepository, RetweetsRepository $retweetRepository, LikesRepository $likeRepository ,CommentRepository $commentRepository): Response
     {
+        $getCommment = $commentRepository->getComments($post->getId());
+        $retweetCounts = $retweetRepository->countRt($post->getId());
+        $likeCounts = $likeRepository->countLike($post->getId());
+
+
         return $this->render('posts/show.html.twig', [
             'post' => $post,
+            'comments' => $getCommment,
+            'retweetCount' => $retweetCounts,
+            'likeCount' => $likeCounts,
         ]);
     }
 

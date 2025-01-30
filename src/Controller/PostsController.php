@@ -24,7 +24,7 @@ final class PostsController extends AbstractController
     public function index(PostsRepository $postsRepository, UserRepository $userRepository, RetweetsRepository $retweetRepository, LikesRepository $likeRepository): Response
     {
 
-    $posts = $postsRepository->findAll();
+    $posts = $postsRepository->findAllPosts();
 
     $retweetCounts = [];
     foreach ($posts as $post) {
@@ -36,7 +36,7 @@ final class PostsController extends AbstractController
         $likeCounts[$post->getId()] = $likeRepository->countLike($post->getId());
     }
         return $this->render('posts/index.html.twig', [
-            'posts' => $postsRepository->findAll(),
+            'posts' => $posts,
             'users' => $userRepository ->findAll(),
             'retweetCount' => $retweetCounts,
             'likeCount' => $likeCounts,

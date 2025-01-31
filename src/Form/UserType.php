@@ -13,7 +13,6 @@ use Misd\PhoneNumberBundle\Form\Type\PhoneNumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Validator\Constraints\File;
 
 class UserType extends AbstractType
 {
@@ -34,33 +33,20 @@ class UserType extends AbstractType
                 // 'empty_data' => '',
                 'mapped' => false,
                 'attr' => [
-                    'placeholder' => 'Garder vide si aucun changement.',  
+                    'placeholder' => 'Keep it empty if you wish to keep your actual password.',  
                 ],
                 'constraints' => [
                 new Length([
                     'min' => 6,
-                    'minMessage' => 'Le mot de passe doit au moins faire {{ limit }} caractères',
+                    'minMessage' => 'Your password should be at least {{ limit }} characters',
                     // max length allowed by Symfony for security reasons
                     'max' => 4096,
                 ]),],
             ])
-
             ->add('profilePicture', FileType::class, [
-                'label' => 'Photo de profil',
+                'label' => 'Photo de profil (JPG, PNG)', 
                 'mapped' => false,
-                'required' => false,
-                // 'attr' => [ 'class' => 'form-control', 'accept' => 'image/*'],
-                // 'constraints' => [
-                //     new File([
-                //         'maxSize' => '1024k',
-                //         'mimeTypes' => [
-                //             'image/jpeg',
-                //             'image/png',
-                //             'image/gif',
-                //         ],
-                //         'mimeTypesMessage' => 'Veuillez télécharger une image valide (JPEG, PNG, GIF)',
-                //     ])
-                // ],
+                'required' => false, 
             ])
         ;
     }

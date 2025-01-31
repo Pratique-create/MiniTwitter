@@ -54,17 +54,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $profilePicture = null;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Like::class, mappedBy="user")
-     */
-    private $likes;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Retweet::class, mappedBy="user")
-     */
-    private $retweets;
+    private ?string $profilePicture = 'images/profil.png';
 
     public function getId(): ?int
     {

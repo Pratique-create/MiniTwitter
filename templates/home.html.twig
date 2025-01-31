@@ -1,25 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Astra - Accueil
+{% block title %}Posts index
 {% endblock %}
 
 {% block body %}
 	<body class="background">
+		<header>
+			<nav class="nav-bar">
+				{% if app.user %}
+					<a href="{{ path('app_logout') }}" class="btn">Log out</a>
+					<a href="{{ path('app_user_index', {'id': app.user.id}) }}" class="btn">Profile</a>
+					<a href="{{ path('app_posts_index') }}" class="btn">Feed</a>
+					{% else %}
+				{% endif %}
+			</nav>
+		</header>
 
 		<main>
-			<div class="box-logo">
-				<img src="{{ asset('images/star_white.svg') }}" class="logo" alt="Logo Astra"></div>
+			<img src="{{ asset('images/star.svg') }}" class="logo" alt="Logo Astra">
 			<h1>Bienvenue !</h1>
 
 			<div class="buttons">
 				<a href="{{ path('app_register') }}" class="btn-register">S'inscrire</a>
 				<a href="{{ path('app_login') }}" class="btn-login">Se connecter</a>
 			</div>
-			
-		{# {% endif %} #}
-			
 		</main>
-		<footer>&copy; Copyright 2025 - Astra</footer>
 
+		<footer>&copy; Copyright 2025 - Astra</footer>
 	</body>
 {% endblock %}

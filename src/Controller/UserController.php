@@ -13,10 +13,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Controller\SecurityController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use App\Repository\LikesRepository;
-use App\Repository\RetweetsRepository;
-use App\Repository\CommentRepository;
 
+use App\Repository\RetweetsRepository;
+use App\Repository\LikesRepository;
 
 
 #[Route('/user')]
@@ -24,7 +23,7 @@ final class UserController extends AbstractController
 {
 
     #[Route('/user/{id}', name: 'app_user_index', methods: ['GET'])]
-    public function index(int $id, UserRepository $userRepository, PostsRepository $postsRepository, RetweetsRepository $retweetRepository, LikesRepository $likeRepository, CommentRepository $commentRepository): Response
+    public function index(int $id, UserRepository $userRepository, PostsRepository $postsRepository, RetweetsRepository $retweetRepository, LikesRepository $likeRepository): Response
     {
         $user = $userRepository->find($id);
 
@@ -42,28 +41,11 @@ final class UserController extends AbstractController
 
         $posts = $postsRepository->findBy(['user' => $user], ['createdAt' => 'DESC']);
 
-        $retweetCounts = [];
-        foreach ($posts as $post) {
-            $retweetCounts[$post->getId()] = $retweetRepository->countRt($post->getId());
-        }
-
-        $likeCounts = [];
-        foreach ($posts as $post) {
-            $likeCounts[$post->getId()] = $likeRepository->countLike($post->getId());
-        }
-
-        $commentCounts = [];
-        foreach ($posts as $post) {
-            $commentCounts[$post->getId()] = $commentRepository->countComment($post->getId());
-        }
-
         return $this->render('user/index.html.twig', [
-            'user' => $user,
-            'posts' => $posts,
+            'user' =>$user,
+            'posts' =>$posts,
             'retweetCount' => $retweetCounts,
             'likeCount' => $likeCounts,
-            'commentCount' => $commentCounts
-
         ]);
     }
 
@@ -76,11 +58,9 @@ final class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-
             if (!$user->getProfilePicture()) {
-                $user->setProfilePicture('images/profil/profil.png');
+                $user->setProfilePicture('./images/profil.png');
             }
-
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -118,7 +98,6 @@ final class UserController extends AbstractController
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
     {
-
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
@@ -130,18 +109,18 @@ final class UserController extends AbstractController
                 $user->setPassword($hashedPassword);
             }
 
+
             $profilePicture = $form->get('profilePicture')->getData();
             if ($profilePicture) {
-                
-                $pictureFilename = uniqid(). '.' .$profilePicture->guessExtension();
+                $pictureFilename = uniqid() . '.' . $profilePicture->guessExtension();
                 $profilePicture->move(
                     $this->getParameter('profile_pictures_directory'),
                     $pictureFilename
                 );
-                $user->setProfilePicture('images/profil/' . $pictureFilename);
+                $user->setProfilePicture('images/' . $pictureFilename);
             }
+    
 
-            $entityManager->persist($user);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_user_index', ['id' => $user->getId()]);
@@ -149,7 +128,7 @@ final class UserController extends AbstractController
 
         return $this->render('user/edit.html.twig', [
             'user' => $user,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 

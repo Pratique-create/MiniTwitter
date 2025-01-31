@@ -1080,7 +1080,13 @@ input:focus {
     fill: white;
 }
 
-
+.alert-danger {
+    padding: 10px 15px;
+    border: 1px solid #991FEB;
+    color: #991FEB;
+    background-color: transparent;
+    margin: 5px;
+}
 
 
 @media (min-width: 769px) and (max-width: 1279px) {
@@ -1090,6 +1096,16 @@ input:focus {
 
     .logo {
         width: 160px;
+
+    }
+
+    .btn-register, .btn-login {
+        font-size: 1.8rem;
+        width: 400px;
+        max-width: 500px;
+        height: 60px;
+        padding: 25px;
+
 
     }
     

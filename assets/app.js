@@ -10,6 +10,7 @@ import './styles/app.css';
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
 
 
+document.addEventListener('DOMContentLoaded', function () {
   const fileInput = document.getElementById('user_profilePicture'); 
   const previewImage = document.getElementById('profilePicturePreview'); 
 
@@ -23,5 +24,5 @@ console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
           reader.readAsDataURL(file);
       }
   });
-
+});
 

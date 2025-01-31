@@ -31,14 +31,16 @@ class RegistrationController extends AbstractController
 
             // encode the plain password
             $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
-
+            if (!$user->getProfilePicture()) {
+                $user->setProfilePicture('images/profil/profil.png');
+            }
             $entityManager->persist($user);
             $entityManager->flush();
 
             // do anything else you need here, like send an email
             $security->login($user);
 
-            
+            return $this->redirectToRoute('app_posts_index', ['id' => $user->getId()]);
         }
 
         return $this->render('registration/register.html.twig', [

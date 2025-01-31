@@ -26,14 +26,6 @@ class RetweetsRepository extends ServiceEntityRepository
         return (int) $qb->getQuery()->getSingleScalarResult();
     }
 
-    // public function countRt($postId){
-    //     $sql = "SELECT COUNT * as retweet_count FROM Retweets WHERE post_id = :post_id";
-    //     $stmt = $this->pdo->prepare($sql);
-    //     $stmt->execute([':post_id' => $postId]);
-    //     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    //     return $result['retweet_count'] ?? 0;
-    // }
-
     //    /**
     //     * @return Retweets[] Returns an array of Retweets objects
     //     */

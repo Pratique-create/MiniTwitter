@@ -6,6 +6,7 @@ use App\Entity\Comment;
 use App\Entity\Posts;
 use App\Form\CommentType;
 use App\Repository\CommentRepository;
+use App\Repository\PostsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,7 +25,7 @@ final class CommentController extends AbstractController
     }
 
     #[Route('/newComment/{id}', name: 'app_comment_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, Posts $post, int $id): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, Posts $post, int $id, PostsRepository $postsRepository): Response
     {
 
         $post = $entityManager->getRepository(Posts::class)->find($id);
@@ -45,6 +46,7 @@ final class CommentController extends AbstractController
         return $this->render('comment/new.html.twig', [
             'comment' => $comment,
             'form' => $form,
+            'post' => $post,
         ]);
     }
 

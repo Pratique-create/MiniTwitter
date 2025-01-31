@@ -5,8 +5,8 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
-use App\Repository\PostsRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\PostsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,14 +27,6 @@ final class UserController extends AbstractController
     public function index(int $id, UserRepository $userRepository, PostsRepository $postsRepository, RetweetsRepository $retweetRepository, LikesRepository $likeRepository, CommentRepository $commentRepository): Response
     {
         $user = $userRepository->find($id);
-
-        $posts = $postsRepository->findAll();
-        $retweetCounts = [];
-        $likeCounts = [];
-        foreach ($posts as $post) {
-        $retweetCounts[$post->getId()] = $retweetRepository->countRt($post->getId());
-        $likeCounts[$post->getId()] = $likeRepository->countLike($post->getId());
-    }
     
         if (!$user) {
             throw $this->createNotFoundException('User not found');
@@ -93,15 +85,9 @@ final class UserController extends AbstractController
         ]);
     }
 
-    // #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
-    // public function show(User $user): Response
-    // {
-    //     return $this->render('user/show.html.twig', [
-    //         'user' => $user,
-    //     ]);
-    // }
     #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
-    public function show(int $id, UserRepository $userRepository): Response
+
+    public function show(int $id, UserRepository $userRepository, PostsRepository $postsRepository): Response
     {
         $user = $userRepository->find($id);
     
@@ -109,11 +95,14 @@ final class UserController extends AbstractController
             throw $this->createNotFoundException('User not found');
         }
 
-        return $this->render('user/show.html.twig', [
+        $posts = $postsRepository->findBy(['user' => $user], ['createdAt' => 'DESC']);
+
+        return $this->render('user/index.html.twig', [
             'user' => $user,
-            
-        ]);
-    }
+            'posts' => $posts,
+        ]);}
+
+
 
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response

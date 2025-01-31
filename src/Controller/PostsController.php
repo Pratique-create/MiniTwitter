@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Posts;
 use App\Form\PostsType;
-use App\Repository\CommentRepository;
 use App\Repository\LikesRepository;
 use App\Repository\PostsRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -12,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use App\Repository\CommentRepository;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use App\Repository\RetweetsRepository;
@@ -28,6 +28,10 @@ final class PostsController extends AbstractController
     $posts = $postsRepository->findAllPosts();
 
     $retweetCounts = [];
+    foreach ($posts as $post) {
+        $retweetCounts[$post->getId()] = $retweetRepository->countRt($post->getId());
+    }
+
     $likeCounts = [];
     foreach ($posts as $post) {
         $likeCounts[$post->getId()] = $likeRepository->countLike($post->getId());
@@ -55,7 +59,7 @@ final class PostsController extends AbstractController
         }
 
         $post = new Posts();
-        $post->setUser($this->getUser());
+        $post -> setUser($this->getUser());
         $form = $this->createForm(PostsType::class, $post);
         $form->handleRequest($request);
 

@@ -8,7 +8,10 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
-
+###< symfony/webpack-encore-bundle ###
+.env
+.env.dev
+.env.test
 ###> phpunit/phpunit ###
 /phpunit.xml
 .phpunit.result.cache
@@ -23,9 +26,6 @@
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+assets/styles/style.drawio
 
-###> symfony/webpack-encore-bundle ###
 .env
-.env.dev
-.env.test
-migrations/Version20250129083040.php

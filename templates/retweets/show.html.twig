@@ -20,7 +20,7 @@
 
     <a href="{{ path('app_retweets_index') }}">back to list</a>
 
-    
+    <a href="{{ path('app_retweets_edit', {'id': retweet.id}) }}">edit</a>
 
     {{ include('retweets/_delete_form.html.twig') }}
 {% endblock %}

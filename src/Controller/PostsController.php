@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Posts;
 use App\Form\PostsType;
-use App\Repository\CommentRepository;
 use App\Repository\LikesRepository;
 use App\Repository\PostsRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -29,6 +28,9 @@ final class PostsController extends AbstractController
     $posts = $postsRepository->findAllPosts();
 
     $retweetCounts = [];
+    foreach ($posts as $post) {
+        $retweetCounts[$post->getId()] = $retweetRepository->countRt($post->getId());
+    }
     $likeCounts = [];
     foreach ($posts as $post) {
         $likeCounts[$post->getId()] = $likeRepository->countLike($post->getId());

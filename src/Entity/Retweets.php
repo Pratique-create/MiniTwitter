@@ -23,7 +23,7 @@ class Retweets
     private ?User $user = null;
 
     #[ORM\Column(type: 'datetime_immutable')]
-    private ?\DateTimeImmutable $createdAt = null;
+    private ?DateTimeImmutable $createdAt = null;
 
     public function __construct(){
         $this->createdAt = new DateTimeImmutable();
@@ -58,12 +58,12 @@ class Retweets
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    public function setCreatedAt(DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
 
@@ -95,7 +95,7 @@ class Retweets
 //     private ?User $user_id = null;
 
 //     #[ORM\Column]
-//     private ?\DateTimeImmutable $createdAt = null;
+//     private ?DateTimeImmutable $createdAt = null;
 
 //     public function getId(): ?int
 //     {
@@ -126,12 +126,12 @@ class Retweets
 //         return $this;
 //     }
 
-//     public function getCreatedAt(): ?\DateTimeImmutable
+//     public function getCreatedAt(): ?DateTimeImmutable
 //     {
 //         return $this->createdAt;
 //     }
 
-//     public function setCreatedAt(\DateTimeImmutable $createdAt): static
+//     public function setCreatedAt(DateTimeImmutable $createdAt): static
 //     {
 //         $this->createdAt = $createdAt;
 

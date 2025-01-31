@@ -28,11 +28,15 @@
 
 				{# dropdown workplace #}
 				{# <a href="{{ path('app_user_index', {'id': app.user.id}) }}">
-									<img src="{{ asset(app.user.getProfilePicture()) }}" class="pp-nav" alt="Photo de profil" style="max-width: 50px; max-height: 50px;">
+					<div class="pp-nav-box">
+										<img src="{{ asset(app.user.getProfilePicture()) }}" class="pp-nav" alt="Photo de profil">
+					</div>
 								</a> #}
 
+				<a href="{{ path('app_posts_index') }}">
+					<img src="{{ asset('images/star_white.svg') }}" class="logo-nav" alt="Logo Astra">
+				</a>
 
-				<img src="{{ asset('images/star_white.svg') }}" class="logo-nav" alt="Logo Astra">
 				<a href="{{ path('app_logout') }}" class="btn-logout">
 					<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="logout-svg"><path d="M7.707,8.707,5.414,11H17a1,1,0,0,1,0,2H5.414l2.293,2.293a1,1,0,1,1-1.414,1.414l-4-4a1,1,0,0,1,0-1.414l4-4A1,1,0,1,1,7.707,8.707ZM21,1H13a1,1,0,0,0,0,2h7V21H13a1,1,0,0,0,0,2h8a1,1,0,0,0,1-1V2A1,1,0,0,0,21,1Z"/></svg>
 				</a>
@@ -44,19 +48,44 @@
 	<main class="tweet-page">
 
 		{% for post in posts %}
-			<div>
-				<div>
-					<img src="{{ asset(post.user.profilePicture) }}" alt="Photo de profil" style="max-width: 75px; max-height: 75px; border-radius: 50%;">
-					<p>{{ post.user.username }}</p>
+			<div class="tweet">
+				<div class="userIDTweet">
+					<img
+					class="imgProfileTweet" src="{{asset(app.user.getProfilePicture()) }}" alt="Photo de profil" style="max-width: 50px; max-height: 50px;">
+
+					{# <a href="{{ path('app_user_index', {'id': app.user.id}) }}"> #}
+					<h3>{{ post.user.username }}</h3>
+					{# </a> #}
+					<p class="dateTweet">{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</p>
+
 				</div>
 				<div>
 					<p>{{ post.content|slice(0, 100) }}</p>
 				</div>
 				<div>
-					<p>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</p>
-					<div>
-						<a href="{{ path('app_retweet', {'id': post.id}) }}" class="btn btn-primary">Retweeter</a>
-						<p>
+
+					<div class="interactions">
+						<a href="{{ path('app_posts_show', {'id': post.id}) }}">
+							<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="see-svg">
+								<circle cx="5" cy="12" r="2"/>
+								<circle cx="12" cy="12" r="2"/>
+								<circle cx="19" cy="12" r="2"/>
+							</svg>
+						</a>
+
+						<svg class="comments-svg" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15,9H13V7a1,1,0,0,0-2,0V9H9a1,1,0,0,0,0,2h2v2a1,1,0,0,0,2,0V11h2a1,1,0,0,0,0-2Zm4-7H5A3,3,0,0,0,2,5V15a3,3,0,0,0,3,3H16.59l3.7,3.71A1,1,0,0,0,21,22a.84.84,0,0,0,.38-.08A1,1,0,0,0,22,21V5A3,3,0,0,0,19,2Zm1,16.59-2.29-2.3A1,1,0,0,0,17,16H5a1,1,0,0,1-1-1V5A1,1,0,0,1,5,4H19a1,1,0,0,1,1,1Z"/></svg>
+
+						<form action="{{ path('app_retweet', {'id': post.id}) }}" method="post">
+							<button type="submit" class="button-retweet">
+								<svg xmlns="http://www.w3.org/2000/svg" class="retweet-svg" viewbox="0 0 24 24">
+									<g>
+										<polygon points="7 7 15.586 7 14.293 8.293 15.707 9.707 19.414 6 15.707 2.293 14.293 3.707 15.586 5 5 5 5 12 7 12 7 7"/>
+										<polygon points="17 17 8.414 17 9.707 15.707 8.293 14.293 4.586 18 8.293 21.707 9.707 20.293 8.414 19 19 19 19 12 17 12 17 17"/>
+									</g>
+								</svg>
+							</button>
+						</form>
+						<p class="interaction-count">
 							{{ retweetCount[post.id] }}
 						</p>
 					</div>

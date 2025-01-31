@@ -1,12 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit User
+{% block title %}Astra - Modifier le profil
 {% endblock %}
 
 {% block body %}
 	<header>
 		<nav class="nav-bar">
 			{% if app.user %}
+
 				<a href="{{ path('app_posts_index') }}">
 					<img src="{{ asset('images/star_white.svg') }}" class="logo-nav" alt="Logo Astra">
 				</a>
@@ -24,21 +25,20 @@
 	</header>
 
 	<main>
-		<div class="container-back">
-			<a href="{{ path('app_user_index', {'id': app.user.id}) }}" class="btn">
-				<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#ffffff" class="bi bi-chevron-left" viewbox="0 0 16 16">
-					<path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
-				</svg>
-			</a>
+		<a href="{{ path('app_user_index', {'id': app.user.id}) }}">
+			<svg class="goback-edit" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+				<polygon points="7.293 4.707 14.586 12 7.293 19.293 8.707 20.707 17.414 12 8.707 3.293 7.293 4.707"/>
+			</svg>
+		</a>
+		<div class="edit-page">
+
+			<h1 class="h1-edit">Modifier le profil</h1>
+
+			{{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+
+			{{ include('user/_delete_form.html.twig') }}
+
 		</div>
-
-		<h1>Edit User</h1>
-
-		{{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
-
-		<a class="btn btn-outline-primary" href="{{ path('app_user_index', {'id': app.user.id}) }}">back to profile</a>
-
-		{{ include('user/_delete_form.html.twig') }}
 	</main>
 	<footer>&copy; Copyright 2025 - Astra</footer>
 

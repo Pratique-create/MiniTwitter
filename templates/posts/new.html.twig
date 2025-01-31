@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Posts
+{% block title %}Astra - Poster un tweet
 {% endblock %}
 
 {% block body %}
@@ -8,9 +8,14 @@
 		<nav class="nav-bar">
 			{% if app.user %}
 				<a href="{{ path('app_user_index', {'id': app.user.id}) }}">
-					<img src="{{ asset(app.user.getProfilePicture()) }}" class="pp-nav" alt="Photo de profil" style="max-width: 50px; max-height: 50px;">
+					<div class="pp-nav-box">
+						<img src="{{ asset(app.user.getProfilePicture()) }}" class="pp-nav" alt="Photo de profil">
+					</div>
 				</a>
-				<img src="{{ asset('images/star_white.svg') }}" class="logo-nav" alt="Logo Astra">
+
+				<a href="{{ path('app_posts_index') }}">
+					<img src="{{ asset('images/star_white.svg') }}" class="logo-nav" alt="Logo Astra">
+				</a>
 
 				<a href="{{ path('app_logout') }}" class="btn-logout">
 					<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="logout-svg"><path d="M7.707,8.707,5.414,11H17a1,1,0,0,1,0,2H5.414l2.293,2.293a1,1,0,1,1-1.414,1.414l-4-4a1,1,0,0,1,0-1.414l4-4A1,1,0,1,1,7.707,8.707ZM21,1H13a1,1,0,0,0,0,2h7V21H13a1,1,0,0,0,0,2h8a1,1,0,0,0,1-1V2A1,1,0,0,0,21,1Z"/></svg>
@@ -20,12 +25,18 @@
 			{% endif %}
 		</nav>
 	</header>
-	<main>
-		<h1>Create new Posts</h1>
+	<main class="main">
+		<a href="{{ path('app_posts_index') }}">
+			<svg class="goback" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+				<polygon points="7.293 4.707 14.586 12 7.293 19.293 8.707 20.707 17.414 12 8.707 3.293 7.293 4.707"/>
+			</svg>
+		</a>
+		<div class="post-page">
+			<h1 class="h1-post">Poster un tweet</h1>
 
-		{{ include('posts/_form.html.twig') }}
+			{{ include('posts/_form.html.twig') }}
 
-		<a class="btn btn-primary" href="{{ path('app_posts_index') }}">back to list</a>
+		</div>
 	</main>
 	<footer>&copy; Copyright 2025 - Astra</footer>
 

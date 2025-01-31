@@ -98,7 +98,7 @@ use Symfony\Component\Routing\Attribute\Route;
 final class LikesController extends AbstractController
 {
     #[Route('/add/{id}',name: 'app_like')]
-    public function addLike(Posts $post, EntityManagerInterface $entityManager): Response
+    public function addLike(Posts $post, Request $request, EntityManagerInterface $entityManager): Response
     {
         $user = $this->getUser();
         if (!$user){
@@ -126,7 +126,6 @@ final class LikesController extends AbstractController
     
             $this->addFlash('success', 'Vous avez like ce message !');
         }
-
 
         return $this->redirectToRoute('app_posts_index');
     }

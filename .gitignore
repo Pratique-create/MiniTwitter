@@ -23,6 +23,7 @@
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+assets/styles/style.drawio
 
 ###> symfony/webpack-encore-bundle ###
 .env

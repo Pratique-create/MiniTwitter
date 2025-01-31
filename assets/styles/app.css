@@ -397,8 +397,6 @@ input:focus {
     pointer-events: none;
 }
 
-
-
 .input-login:focus + .label-login,
 .input-login:not(:placeholder-shown) + .label-login {
     top: 0;
@@ -1188,6 +1186,11 @@ input:focus {
     .logo-register, .logo-login {
         width: 110px;
         margin: 0;
+    }
+
+    .input-register:focus + .label-register,
+    .input-register:not(:placeholder-shown) + .label-register {
+        display: block;
     }
 
     .input-register {

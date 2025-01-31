@@ -9,7 +9,7 @@ html, body {
 body {
     background-color: #0D1117;
     color: white;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
     display: flex;
@@ -32,6 +32,52 @@ body {
     flex-grow: 1;
 }
 
+
+.goback, .goback-edit {
+    position: absolute;
+    width: 35px;
+    fill: #C9D1D9;
+    top: 15%;
+    left: 1.2%;
+    transform: rotateY(3.142rad);
+
+}
+
+.goback:hover {
+    fill: #1F6FEB;
+}
+
+.goback-sign {
+    fill: #1F6FEB;
+    position: absolute;
+    width: 50px;
+    top: 5%;
+    left: 1.2%;
+    transform: rotateY(3.142rad);
+
+}
+
+.goback-edit:hover {
+    fill: #991FEB;
+}
+
+.goback-log {
+    position: absolute;
+    width: 50px;
+    fill: #C9D1D9;
+    top: 5%;
+    left: 1.2%;
+    transform: rotateY(3.142rad);
+}
+
+.goback-sign:hover {
+    fill: #C9D1D9;
+}
+
+.goback-log:hover {
+    fill: #1F6FEB;
+}
+
 h1 {
     color: white;
     font-size: 2.2rem;
@@ -50,7 +96,6 @@ h1 {
     width: 100px;
     height: auto;
     align-items: center;
-    margin-bottom: 10px;
     
 }
 
@@ -76,8 +121,27 @@ h1 {
     padding: 10px 20px;
 }
 
+.pp-nav-box {
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+
 .pp-nav {
-    width: 45px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.comment-nf {
+    margin-top: 10px;
 }
 
 .btn-logout {
@@ -140,6 +204,9 @@ a {
     color: white;
 }
 
+.h1-register {
+    margin: 10px;
+}
 
 
 footer {
@@ -154,17 +221,16 @@ footer {
     left : 0;
 }
 
-.register-page {
+.register-page, .edit-page {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
     justify-content: center;
     align-items: center;
-    padding-top: 20px;
+    /* padding-top: 20px; */
 }
 
 
-.form-login, .form-register {
+.form-login, .form-post {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -173,26 +239,34 @@ footer {
     margin: 0 auto;
     font-family: Arial, sans-serif;
     width: 100%;
+}
 
+.form-edit, .form-register {
+    gap: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    width: 100%;
+}
+
+.form-edit{
+    padding: 0;
 }
 
 .form-register {
-    margin: auto;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+ gap: 10px;
+
 }
 
 .form-group {
     position: relative;
 }
 
-.form-group, .form-register {
+.form-group, .form-register, .form-edit {
     width: 100%;
 }
 
-.input-login, .input-register, .button-login, .button-register {
+.input-login, .input-register, .button-login, .button-register, .input-edit, .button-edit {
     width: 100%;
     padding: 12px;
     font-size: 16px;
@@ -214,6 +288,16 @@ footer {
     outline: none;
     border: none;
     color: #1F6FEB;
+    margin: 7px 0;
+
+}
+
+.input-edit {
+    background-color: #30363D;
+    outline: none;
+    border: none;
+    color: white;
+    margin: 8px 0;
 }
 
 .input-login:focus {
@@ -229,6 +313,12 @@ footer {
     background-color: #30363D;
     border: 1px solid #1F6FEB;
     color: #1F6FEB;
+}
+
+.input-edit {
+    background-color: #30363D;
+    border: 1px solid white;
+    color: white;
 }
 
 input:focus {
@@ -253,9 +343,19 @@ input:focus {
     font-weight: bold;
     cursor: pointer;
     border: 1px solid #1F6FEB;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
+.button-edit {
+    background-color: transparent;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: 1px solid white;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
 
 .button-login:hover {
     background-color: #C9D1D9;
@@ -269,11 +369,23 @@ input:focus {
     transform: scale(1.05);
 }
 
-.button-login:active, .button-register:active {
+.button-edit:hover {
+    background-color: white;
+    color: #0D1117;
+    transform: scale(1.05);
+}
+
+.button-edit:hover {
+    background-color: white;
+    color: #991FEB;
+    transform: scale(1.05);
+}
+
+.button-login:active, .button-register:active, .button-edit:active {
     transform: scale(0.95);
 }
 
-.label-login, .label-register {
+.label-login, .label-register, .label-edit {
     position: absolute;
     top: 50%;
     left: 12px;
@@ -307,12 +419,28 @@ input:focus {
 
 }
 
+.input-edit:focus + .label-edit,
+.input-edit:not(:placeholder-shown) + .label-edit {
+    top: 0;
+    transform: translateY(-50%) scale(0.9);
+    font-size: 12px;
+    color: white;
+    background: linear-gradient(to bottom, #0D1117 50%, #30363D 50%);
+}
+
 .form-login + .label-login {
     display: none; 
 }
 
 .form-register + .label-register {
     display: none; 
+}
+
+.form-edit + .label-edit {
+    display: none; 
+}
+.form-check {
+    margin: 5px 0;
 }
 
 .agree-terms {
@@ -353,6 +481,158 @@ input:focus {
     fill: #C9D1D9;
 }
 
+
+.edit-page {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    width: 100%;
+}
+
+.pp-edit {
+    height: 70px;
+    width: 70px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.img-edit {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.edit-svg {
+    width: 25px;
+    stroke: white;
+    transition: fill 0.3s ease;
+}
+
+.button-edit:hover .edit-svg {
+    stroke: #0D1117;
+}
+
+.h1-edit {
+    font-size: 24px;
+    margin: 0;
+
+}
+/* 
+.delete-post {
+
+} */
+
+.delete-post-svg, .delete-comment-svg {
+    stroke: #C9D1D9;
+    width: 25px;
+    transition: stroke 0.3s ease;
+}
+
+.delete-post-svg:hover, .delete-comment-svg:hover {
+    stroke: #1F7A8C;
+}
+
+
+
+
+.button-delete-account{
+    background-color: transparent;
+    border: none;
+}
+
+.delete-svg {
+    width: 30px;
+    position: absolute;
+    top: 15%;
+    right: 1.2%;
+    stroke: white;
+    transition: stroke 0.3s ease;
+
+}
+
+.button-delete-account:hover .delete-svg {
+    stroke: #991FEB;
+}
+
+
+
+
+
+
+.pp-edit {
+    position: relative;
+    width: 60px; 
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.img-edit {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hidden-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0; 
+    cursor: pointer;  
+    z-index: 1; 
+}
+
+.camera-btn {
+    position: absolute;
+    bottom: 3px;
+    right: 3px; 
+    border: none;
+    padding: 5px 6px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+.camera-icon {
+    width: 20px;
+    height: 20px;
+    fill: white;
+}
+
+.camera-btn:hover .camera-icon {
+    fill: #991FEB;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .tweet-page {
     width: 100%;
     margin: 0 auto;
@@ -391,9 +671,25 @@ input:focus {
 
 }
 
-.imgProfileTweet {
+
+.box-pp2 {
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
     margin-right: 10px;
+}
+
+.imgProfileTweet {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 
@@ -401,7 +697,7 @@ input:focus {
     margin-left: 60px;
     width: calc(100% - 60px);
     margin-top: 10px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .userContentTweet p {
@@ -585,9 +881,26 @@ input:focus {
     transition: box-shadow 0.3s ease-in-out;
 }
 
-.photo-profil {
+.box-pp {
+    height: 60px;
     width: 60px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
 }
+
+
+.photo-profil {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
 
 .profile {
     display: flex;
@@ -595,10 +908,13 @@ input:focus {
     align-items: center;
 }
 
-/* 
-.userProfile {
 
-} */
+.userProfile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
 .interactionsProfile {
     display: flex;
@@ -606,17 +922,166 @@ input:focus {
     align-items: center;
 }
 
-.profile-svg {
-    margin: 50px 40px;
-    margin-bottom: 20px;
+/* .profile-see-svg {
+    stroke: #1F7A8C;
+
+} */
+
+.profile-see-svg:hover {
+    stroke: #C9D1D9;
 }
 
+.profile-comments-svg {
+    fill: #1F7A8C;
+
+}
+
+.profile-retweet-svg {
+    fill: #1F6FEB;
+
+}
+
+.profile-like-svg {
+    stroke: #991FEB;
+
+}
+
+.h3 {
+    margin-top: 5px;
+}
+
+.username {
+    margin-top: 5px;
+}
 
 .tweetProfile {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
+
+.post-page {
+    gap: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    width: 100%;
+}
+
+.form-post {
+    position: relative;
+
+}
+
+.box-post {
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.text-post {
+    width: 100%;
+    padding: 20px 10px;
+    min-height: 100px;
+    border-radius: 0;
+    background-color: #30363D;
+    border: none;
+    transition: border 0.3s ease, background-color 0.3s ease;
+    font-size: 16px;
+    color: #1F6FEB;
+    resize: vertical;
+    overflow-x: auto;
+    word-wrap: break-word;
+    word-break: normal;
+}
+
+
+.text-post:focus {
+    background-color: #30363D;
+    border: 1px solid #1F6FEB;
+    outline: none;
+    color: #1F6FEB;
+}
+
+.button-post {
+    background-color: transparent;
+    color: #1F6FEB;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 8px;
+    border: 1px solid #1F6FEB;
+    margin-bottom: 50px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button-post:hover {
+    background-color: #1F6FEB;
+    color: #C9D1D9;
+    transform: scale(1.05);
+}
+
+.button-post:active{
+    transform: scale(0.95);
+}
+
+.label-post {
+    position: absolute;
+    top: 20px;
+    left: 8px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #1F6FEB;
+    padding: 0 4px;
+    transition: 0.3s ease all, background 0.2s;
+    pointer-events: none;
+}
+
+
+
+.text-post:focus + .label-post,
+.text-post:not(:placeholder-shown) + .label-post {
+    top: 0;
+    transform: translateY(-50%) scale(0.9);
+    font-size: 12px;
+    color: #1F6FEB;
+    background: linear-gradient(to bottom, #0D1117 50%, #30363D 50%);
+}
+
+.form-post + .label-post {
+    display: none; 
+}
+
+.post-svg {
+    width: 25px;
+    stroke: #1F6FEB;
+}
+
+.button-post:hover .post-svg {
+    stroke: white;
+}
+
+.h1-register, .h1-post {
+    color: #1F6FEB;
+}
+
+.createdAt {
+    text-align: left;
+}
+
+.comment-svg {
+    width: 25px;
+    fill: #1F6FEB;
+    transition: fill 0.3s ease;
+
+}
+
+.button-post:hover .comment-svg {
+    fill: white;
+}
+
+
+
 
 @media (min-width: 769px) and (max-width: 1279px) {
     h1 {
@@ -633,14 +1098,53 @@ input:focus {
         margin: 0;
     }
 
-    .photo-profil {
+    .box-pp {
         width: 100px;
+        height: 100px;
     }
 
+    .h1-edit, .h1-register {
+        margin-bottom: 10px;
+    }
 
+    .h1-register, .h1-post  {
+        margin: 15px 0;
+    }
+
+    .pp-edit {
+        width: 75px;
+        height: 75px;
+    }
+
+    .camera-btn {
+        bottom: 3px;
+        right: 3px; 
+        padding: 8px;
+    }
+
+    .main {
+        max-width: 600px;
+        width: 60%;
+        margin: 0 auto;
+        padding: 20px;
+        box-sizing: border-box; 
+    }
+
+    .input-edit {
+        margin-bottom: 15px;
+    }
 }
 
 @media (min-width: 1280px) {
+
+    .main {
+        max-width: 1200px;
+        width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+        box-sizing: border-box; 
+    }
+
     h1 {
         font-size: 2.5rem;
     }
@@ -661,13 +1165,17 @@ input:focus {
     }
 
     .button-login, .button-register {
-        margin-top: 20px;
+        margin-top: 10px;
 
     }
 
     .logo-register, .logo-login {
-        width: 130px;
+        width: 110px;
         margin: 0;
+    }
+
+    .input-register {
+        margin: 7px 0;
     }
 
     .tweet, .infoUser {
@@ -678,8 +1186,63 @@ input:focus {
     width: calc(100% - 80px);
     }
 
-    .photo-profil {
-        width: 150px;
+    .box-pp {
+        width: 120px;
+        height: 120px;
     }
 
+    .form-edit {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .form-register {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 7px;
+    }
+
+    .h1-edit {
+        margin: 8px 0;
+        margin-bottom: 25px;
+
+    }
+
+    .h1-register, .h1-post {
+        margin: 15px 0;
+    }
+
+    .goback, .goback-edit {
+        width: 50px;
+    }
+
+    .pp-edit {
+        width: 100px;
+        height: 100px;
+    }
+
+    .camera-btn {
+        bottom: 5px;
+        right: 5px; 
+        padding: 8px;
+    }
+
+    .input-edit {
+        margin-bottom: 20px;
+    }
+
+    .camera-icon {
+        width: 22px;
+        height: 22px;
+    }
+
+    .delete-svg {
+        width: 35px;
+    }
 }

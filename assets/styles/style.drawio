@@ -1,78 +1,9 @@
 <mxfile host="65bd71144e">
     <diagram id="BgHkK9t_jzIzjERbVVGF" name="Page-1">
-        <mxGraphModel dx="693" dy="469" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="832" dy="487" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="3" value="A finir sur Posts" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="20" y="10" width="140" height="240" as="geometry"/>
-                </mxCell>
-                <mxCell id="4" value="Laisser les boutons d'interactions colorées si actifs" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="3">
-                    <mxGeometry y="30" width="140" height="70" as="geometry"/>
-                </mxCell>
-                <mxCell id="5" value="pouvoir aller sur la page profil d'un user en appuyant sur son username" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="3">
-                    <mxGeometry y="100" width="140" height="70" as="geometry"/>
-                </mxCell>
-                <mxCell id="6" value="les tweets doivent s'afficher dans l'ordre décroissant" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="3">
-                    <mxGeometry y="170" width="140" height="70" as="geometry"/>
-                </mxCell>
-                <mxCell id="7" value="A finir sur Show post" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="190" y="10" width="140" height="180" as="geometry"/>
-                </mxCell>
-                <mxCell id="8" value="Design boutons" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="7">
-                    <mxGeometry y="30" width="140" height="30" as="geometry"/>
-                </mxCell>
-                <mxCell id="9" value="Delete que si admin ou user qui a crée le post" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="7">
-                    <mxGeometry y="60" width="140" height="40" as="geometry"/>
-                </mxCell>
-                <mxCell id="10" value="Ne peut pas edit" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="7">
-                    <mxGeometry y="100" width="140" height="40" as="geometry"/>
-                </mxCell>
-                <mxCell id="15" value="Faire disposition des éléments" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="7">
-                    <mxGeometry y="140" width="140" height="40" as="geometry"/>
-                </mxCell>
-                <mxCell id="16" value="A finir user" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="370" y="10" width="140" height="120" as="geometry"/>
-                </mxCell>
-                <mxCell id="17" value="JS pour montrer tweets/retweets/likes" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="16">
-                    <mxGeometry y="30" width="140" height="50" as="geometry"/>
-                </mxCell>
-                <mxCell id="18" value="Disposition éléments pour tweets" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="16">
-                    <mxGeometry y="80" width="140" height="40" as="geometry"/>
-                </mxCell>
-                <mxCell id="20" value="A finir pdp" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="370" y="150" width="140" height="130" as="geometry"/>
-                </mxCell>
-                <mxCell id="21" value="Mettre une taille standard pour tous" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="20">
-                    <mxGeometry y="30" width="140" height="40" as="geometry"/>
-                </mxCell>
-                <mxCell id="22" value="Centrer image" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="20">
-                    <mxGeometry y="70" width="140" height="30" as="geometry"/>
-                </mxCell>
-                <mxCell id="23" value="Border radius" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="20">
-                    <mxGeometry y="100" width="140" height="30" as="geometry"/>
-                </mxCell>
-                <mxCell id="24" value="A finir modif user" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="540" y="10" width="140" height="140" as="geometry"/>
-                </mxCell>
-                <mxCell id="25" value="Faire form (reprendre signin)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="24">
-                    <mxGeometry y="30" width="140" height="40" as="geometry"/>
-                </mxCell>
-                <mxCell id="26" value="Voir si faire un changement de photo de profil directement par la pdp est possible&amp;nbsp;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="24">
-                    <mxGeometry y="70" width="140" height="70" as="geometry"/>
-                </mxCell>
-                <mxCell id="28" value="A finir fleche" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="540" y="170" width="140" height="90" as="geometry"/>
-                </mxCell>
-                <mxCell id="29" value="Faire fleche retour arrière dans modif user, show post et create post" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="28">
-                    <mxGeometry y="30" width="140" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="32" value="A finir create post" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="190" y="210" width="140" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="33" value="Faire form&amp;nbsp;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="32">
-                    <mxGeometry y="30" width="140" height="30" as="geometry"/>
-                </mxCell>
             </root>
         </mxGraphModel>
     </diagram>

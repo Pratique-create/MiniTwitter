@@ -3,8 +3,6 @@
 namespace App\Form;
 
 use App\Entity\Posts;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -16,9 +14,7 @@ class PostsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('content', TextareaType::class, [
-                'label' => 'Content',
-            ])
+            ->add('content')
             // ->add('createdAt', null, [
             //     'widget' => 'single_text',
             // ])

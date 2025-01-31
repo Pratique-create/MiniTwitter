@@ -28,4 +28,3 @@
 .env
 .env.dev
 .env.test
-migrations/Version20250129083040.php

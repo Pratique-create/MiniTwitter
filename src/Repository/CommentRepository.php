@@ -25,16 +25,6 @@ class CommentRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function countComment($postId): int
-    {
-        $qb = $this->createQueryBuilder('c')
-            ->select('COUNT(c.id)')
-            ->where('c.post = :postId')
-            ->setParameter('postId', $postId);
-
-        return (int) $qb->getQuery()->getSingleScalarResult();
-    }
-
 
     //    /**
     //     * @return Comment[] Returns an array of Comment objects
